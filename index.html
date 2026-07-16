@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <title>👥 Invite Friends · Claim Rewards</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H9YJXWDNS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5H9YJXWDNS');
+  </script>
+
+  <style>
+    /* ===== Global Reset ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f4f6fc;
+      color: #1b1e2b;
+      padding: 20px 16px 40px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .main { max-width: 880px; width: 100%; }
+
+    .card {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 32px -8px rgba(0,0,0,0.06);
+    }
+
+    .top-brand {
+      text-align: center;
+      margin-bottom: 14px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #8e95b3;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .top-brand .official-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(27,30,43,0.06);
+      padding: 3px 14px;
+      border-radius: 40px;
+      color: #1b1e2b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 12px;
+      border: 1px solid rgba(27,30,43,0.06);
+      transition: all 0.2s;
+    }
+    .top-brand .official-link:hover { background: #1b1e2b; color: white; }
+
+    .lang-bar {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 5px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4a4f6b;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { background: white; color: #1b1e2b; }
+    .lang-btn.active { background: #1b1e2b; color: white; border-color: #1b1e2b; }
+    .lang-btn .flag { margin-right: 4px; }
+
+    /* ===== Company Intro Section (Text + Video) ===== */
+    .company-intro {
+      background: rgba(255,255,255,0.95);
+      border-radius: 32px;
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(27,30,43,0.06);
+      box-shadow: 0 8px 32px -8px rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .company-intro .intro-text {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #2d324a;
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto;
+      transition: opacity 0.8s ease;
+    }
+    .company-intro .intro-text strong { color: #1b1e2b; }
+    .company-intro .intro-text .highlight { color: #ed8936; font-weight: 700; }
+    .company-intro .intro-video-wrapper {
+      margin-top: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      height: 0;
+      padding-bottom: 56.25%;
+      position: relative;
+    }
+    .company-intro .intro-video-wrapper.show {
+      opacity: 1;
+      transform: translateY(0);
+      height: auto;
+      padding-bottom: 56.25%;
+    }
+    .company-intro .intro-video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .summary-banner {
+      background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+      border-radius: 20px;
+      padding: 18px 24px;
+      text-align: center;
+      color: white;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 24px rgba(237,137,54,0.25);
+    }
+    .summary-banner .big-number { font-size: 34px; font-weight: 900; letter-spacing: -1px; }
+    .summary-banner .big-number .currency { font-size: 20px; font-weight: 600; }
+    .summary-banner .sub-text { font-size: 15px; opacity: 0.95; margin-top: 2px; font-weight: 500; }
+    .summary-banner .sub-text .highlight-gold { color: #fff7e6; text-decoration: underline; }
+    .summary-banner .tags {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .summary-banner .tags span {
+      background: rgba(255,255,255,0.15);
+      padding: 2px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .scroll-hint {
+      text-align: center;
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(237,137,54,0.08) 0%, rgba(237,137,54,0.04) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(237,137,54,0.10);
+      cursor: pointer;
+      animation: pulseHint 2s ease-in-out infinite;
+      transition: opacity 0.5s ease, transform 0.5s ease, padding 0.5s ease, margin 0.5s ease, height 0.5s ease;
+      overflow: hidden;
+    }
+    .scroll-hint.hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      padding: 0 16px;
+      margin: 0;
+      height: 0;
+      border: none;
+      animation: none;
+    }
+    .scroll-hint .hint-text { font-size: 14px; font-weight: 600; color: #ed8936; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .scroll-hint .hint-text .arrow { display: inline-block; font-size: 16px; }
+    .scroll-hint .hint-text .arrow.down { animation: bounceArrow 1.5s ease-in-out infinite; }
+    .scroll-hint .hint-text .arrow.up { animation: bounceArrow 1.5s ease-in-out infinite 0.3s; }
+    @keyframes pulseHint { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.02); } }
+    @keyframes bounceArrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 19px;
+      font-weight: 700;
+      color: #1b1e2b;
+      margin-bottom: 16px;
+    }
+    .section-title .emoji { font-size: 24px; }
+    .section-title .line { flex: 1; height: 1.5px; background: linear-gradient(90deg, #d0d6e8 0%, transparent 100%); }
+
+    .invite-generator {
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: rgba(27,30,43,0.03);
+      border-radius: 16px;
+      border: 1px solid rgba(27,30,43,0.06);
+    }
+    .invite-generator .label { font-size: 12px; font-weight: 600; color: #4a4f6b; margin-bottom: 6px; display: block; }
+    .invite-generator .input-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .invite-generator .input-row input {
+      flex: 1;
+      min-width: 120px;
+      padding: 10px 14px;
+      border: 1px solid rgba(27,30,43,0.10);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1b1e2b;
+      background: white;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .invite-generator .input-row input:focus {
+      border-color: #ed8936;
+      box-shadow: 0 0 0 3px rgba(237,137,54,0.10);
+    }
+    .invite-generator .input-row input::placeholder { color: #b0b5c9; font-weight: 400; }
+    .invite-generator .input-row .btn-generate {
+      padding: 10px 20px;
+      background: #1b1e2b;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .invite-generator .input-row .btn-generate:hover { background: #2a2f45; transform: translateY(-1px); }
+    .invite-generator .input-row .btn-generate:active { transform: scale(0.97); }
+    .invite-generator .generated-link {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: white;
+      border-radius: 10px;
+      border: 1px solid rgba(27,30,43,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      word-break: break-all;
+    }
+    .invite-generator .generated-link .link-text { font-size: 13px; color: #1b1e2b; flex: 1; min-width: 150px; }
+    .invite-generator .generated-link .link-text .code-highlight { color: #ed8936; font-weight: 700; }
+    .invite-generator .generated-link .btn-copy {
+      padding: 6px 16px;
+      background: #ed8936;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .invite-generator .generated-link .btn-copy:hover { background: #dd7a2a; transform: translateY(-1px); }
+    .invite-generator .generated-link .btn-copy:active { transform: scale(0.95); }
+    .invite-generator .generated-link .btn-copy.copied { background: #48bb78; }
+
+    .step-text { font-size: 14px; line-height: 2; color: #2d324a; }
+    .step-text code { background: rgba(27,30,43,0.06); padding: 2px 10px; border-radius: 6px; font-size: 13px; font-weight: 600; color: #1b1e2b; }
+    .step-text .highlight-step { color: #ed8936; font-weight: 700; }
+
+    .motivation-box {
+      margin-top: 14px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(237,137,54,0.08) 0%, rgba(237,137,54,0.04) 100%);
+      border-radius: 16px;
+      border-left: 4px solid #ed8936;
+      border: 1px solid rgba(237,137,54,0.12);
+      border-left-width: 4px;
+    }
+    .motivation-box .motivation-text { font-size: 14px; line-height: 1.9; color: #2d324a; }
+    .motivation-box .motivation-text strong { color: #1b1e2b; }
+    .motivation-box .motivation-text .highlight-gold { color: #ed8936; font-weight: 700; }
+    .motivation-box .motivation-text .highlight-big { font-size: 18px; font-weight: 800; color: #ed8936; }
+    .motivation-box .motivation-text .emoji-big { font-size: 20px; }
+    .motivation-box .motivation-divider { height: 1px; background: linear-gradient(90deg, rgba(237,137,54,0.20) 0%, transparent 100%); margin: 10px 0; }
+    .motivation-box .motivation-call { display: inline-block; margin-top: 6px; background: #ed8936; color: white; padding: 4px 20px; border-radius: 30px; font-size: 14px; font-weight: 700; }
+
+    .btn-wrap { display: flex; flex-direction: column; align-items: center; margin-top: 4px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-telegram { background: #1b1e2b; color: white; box-shadow: 0 6px 24px rgba(27,30,43,0.20); }
+    .btn-telegram:hover { background: #2a2f45; transform: translateY(-2px); }
+    .btn-group { background: #1b1e2b; color: white; box-shadow: 0 6px 24px rgba(27,30,43,0.18); }
+    .btn-group:hover { background: #2a2f45; transform: translateY(-2px); }
+    .btn .icon { font-size: 20px; }
+    .btn .sub-text { font-size: 11px; font-weight: 400; opacity: 0.7; display: block; }
+    .btn-note { margin-top: 8px; font-size: 12px; color: #8e95b3; text-align: center; background: rgba(255,255,255,0.3); padding: 4px 16px; border-radius: 30px; }
+    .btn-note strong { color: #1b1e2b; }
+
+    .apply-box { background: rgba(255,255,255,0.3); border-radius: 16px; padding: 18px 22px; border-left: 4px solid #1b1e2b; margin-bottom: 14px; }
+    .apply-box p { font-size: 14px; line-height: 1.8; color: #2d324a; }
+
+    .tip-list { list-style: none; }
+    .tip-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #2d324a;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .tip-list li:last-child { border-bottom: none; }
+    .tip-list .dot { color: #1b1e2b; font-weight: 700; font-size: 15px; line-height: 1.4; }
+    .tip-list .highlight { color: #1b1e2b; font-weight: 600; }
+
+    .faq-item { background: rgba(255,255,255,0.3); border-radius: 14px; padding: 12px 18px; }
+    .faq-item .q { font-weight: 700; color: #1b1e2b; font-size: 14px; }
+    .faq-item .a { font-size: 13px; color: #5a6080; }
+
+    .share-preview {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.25s ease;
+      margin-bottom: 16px;
+      cursor: pointer;
+    }
+    .share-preview:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .share-card-inner { display: flex; gap: 16px; padding: 14px; align-items: stretch; }
+    .share-card-image { flex: 0 0 100px; border-radius: 14px; overflow: hidden; background: #f0f2f8; }
+    .share-card-image img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1; display: block; }
+    .share-card-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 2px 0; }
+    .share-card-badge {
+      display: inline-block;
+      background: #1b1e2b;
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 12px;
+      border-radius: 30px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 4px;
+    }
+    .share-card-title { font-size: 16px; font-weight: 700; color: #1b1e2b; line-height: 1.3; margin-bottom: 2px; }
+    .share-card-title .highlight { color: #ed8936; }
+    .share-card-desc { font-size: 12px; color: #5a6080; line-height: 1.5; flex: 1; }
+    .share-card-desc strong { color: #1b1e2b; }
+    .share-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .share-card-brand { font-size: 11px; font-weight: 600; color: #4a4f6b; }
+    .share-card-cta { font-size: 11px; font-weight: 700; color: #1b1e2b; background: rgba(27,30,43,0.06); padding: 3px 14px; border-radius: 30px; }
+
+    .share-buttons {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 16px;
+      border-radius: 40px;
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: white;
+      background: #1b1e2b;
+    }
+    .share-btn:active { transform: scale(0.94); }
+    .share-btn.telegram { background: #0088cc; }
+    .share-btn.telegram:hover { background: #0077b3; transform: translateY(-2px); }
+    .share-btn.whatsapp { background: #25D366; }
+    .share-btn.whatsapp:hover { background: #1da85c; transform: translateY(-2px); }
+    .share-btn.facebook { background: #1877F2; }
+    .share-btn.facebook:hover { background: #1664d6; transform: translateY(-2px); }
+    .share-btn.twitter { background: #000000; }
+    .share-btn.twitter:hover { background: #1a1a1a; transform: translateY(-2px); }
+    .share-btn.copy { background: #6c757d; }
+    .share-btn.copy:hover { background: #5a6268; transform: translateY(-2px); }
+
+    .footer-note {
+      text-align: center;
+      color: #8e95b3;
+      font-size: 11px;
+      margin-top: 28px;
+      padding: 14px;
+      border-top: 1px solid rgba(0,0,0,0.04);
+      letter-spacing: 0.3px;
+    }
+    .footer-note a { color: #4a4f6b; text-decoration: none; }
+    .footer-note a:hover { color: #1b1e2b; }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(27,30,43,0.92);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 50px;
+      z-index: 9999;
+      font-size: 13px;
+      backdrop-filter: blur(12px);
+      animation: fadeInOut 3s ease forwards;
+      max-width: 90%;
+      text-align: center;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    }
+
+    @media (max-width: 700px) {
+      .card { padding: 20px 18px; border-radius: 24px; }
+      .summary-banner .big-number { font-size: 28px; }
+      .lang-btn { font-size: 11px; padding: 4px 12px; }
+      .top-brand { font-size: 10px; gap: 6px; }
+      .top-brand .official-link { font-size: 10px; padding: 2px 10px; }
+      .invite-generator .input-row { flex-direction: column; }
+      .invite-generator .input-row input { width: 100%; }
+      .invite-generator .input-row .btn-generate { width: 100%; }
+      .invite-generator .generated-link { flex-direction: column; align-items: stretch; }
+      .scroll-hint .hint-text { font-size: 12px; }
+      .share-card-inner { flex-direction: column; }
+      .share-card-image { flex: 0 0 auto; height: 140px; width: 100%; }
+      .share-card-image img { aspect-ratio: auto; height: 100%; width: 100%; }
+    }
+    @media (max-width: 480px) {
+      body { padding: 12px 10px 30px; }
+      .summary-banner .big-number { font-size: 24px; }
+      .summary-banner .sub-text { font-size: 13px; }
+      .summary-banner .tags span { font-size: 10px; padding: 1px 10px; }
+      .btn { font-size: 14px; padding: 12px 20px; }
+      .btn .icon { font-size: 18px; }
+      .share-card-title { font-size: 14px; }
+      .share-btn { font-size: 11px; padding: 5px 12px; }
+      .share-buttons { gap: 4px; }
+      .closing-message { padding: 20px 18px; }
+      .closing-message p { font-size: 13px; }
+      .scroll-hint .hint-text { font-size: 11px; }
+      .motivation-box { padding: 12px 14px; }
+      .motivation-box .motivation-text { font-size: 12px; }
+      .motivation-box .motivation-text .highlight-big { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+<div class="main">
+
+  <!-- ===== Top Brand ===== -->
+  <div class="top-brand">
+    <span>✦ P G   M A L L</span>
+    <a href="https://www.pgmall1234.com" target="_blank" class="official-link">
+      <span>🌐</span> www.pgmall1234.com
+    </a>
+    <span>·   E T H I O P I A ✦</span>
+  </div>
+
+  <!-- ===== Language Switcher ===== -->
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')"><span class="flag">🇬🇧</span> English</button>
+    <button class="lang-btn" data-lang="am" onclick="switchLanguage('am')"><span class="flag">🇪🇹</span> አማርኛ</button>
+  </div>
+
+  <!-- ===== Company Intro Section ===== -->
+  <div class="company-intro" id="companyIntro">
+    <div class="intro-text" id="introText">
+      <p style="margin-bottom: 0.8rem;">
+        <strong>PG</strong> is a global company with operations spanning multiple countries and regions. Among our diverse markets, <span class="highlight">Ethiopia</span> is one we value and believe in deeply.
+      </p>
+      <p style="margin-bottom: 0.8rem;">
+        Here we find hardworking, humble people who are eager to change their lives. You are willing to put in the effort and seize opportunities. <strong>PG</strong>'s mission is to provide stable, reliable, work-from-home online jobs for people like you.
+      </p>
+      <p style="margin-bottom: 0.8rem;">
+        We are not here for short-term experiments. We believe in Africa's future potential — a young population, rapidly growing mobile internet adoption, and a strong desire for online income opportunities.
+      </p>
+      <p style="margin-bottom: 0.8rem;">
+        <strong>PG</strong> wants to be part of this journey, growing alongside you. In Ethiopia, we hope <strong>PG</strong> is not just a platform to earn money, but a place where you can build a stable life and achieve your dreams.
+      </p>
+      <p style="font-weight: 700; color: #1b1e2b; font-size: 1.1rem;">
+        You chose <span class="highlight">PG</span>, and <span class="highlight">PG</span> will honor your trust. Together, we walk the road ahead. 💪🌏
+      </p>
+    </div>
+    <div class="intro-video-wrapper" id="videoWrapper">
+      <iframe 
+        id="introVideo"
+        src="https://streamable.com/e/zkfkzl?nocontrols=1&autoplay=1" 
+        allow="autoplay; fullscreen" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- ===== Summary Banner ===== -->
+  <div class="summary-banner">
+    <div>
+      <div class="big-number">50 <span class="currency">ETB</span></div>
+      <div class="sub-text">💰 Recommend <strong>1</strong> friend = <strong>50 ETB</strong> reward</div>
+      <div class="sub-text" style="font-size:14px; opacity:0.9; margin-top:4px;">
+        📌 Friend earns <strong class="highlight-gold">2,100 ETB</strong> after 2-day internship · Mutual benefit
+      </div>
+    </div>
+    <div class="tags">
+      <span>📌 2-day Intern</span>
+      <span>♾️ Unlimited</span>
+      <span>⏳ Long-term</span>
+      <span>💰 10-min payout</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ⭐ 8-Step Operation Guide · Easy to Onboard New Members -->
+  <!-- ============================================================ -->
+  <div class="card" style="background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(245,247,250,0.95) 100%); border: 1px solid rgba(27,30,43,0.06);">
+    <div class="section-title">
+      <span class="emoji">📋</span>
+      <span style="background: linear-gradient(135deg, #1b1e2b, #4a4f6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="guideTitle">8-Step Operation Guide · Easy to Onboard New Members</span>
+      <span class="line"></span>
+    </div>
+    <p style="text-align: center; font-size: 15px; color: #5a6080; margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto;" id="guideSub">
+      Follow this process to guide your friends and family through onboarding. Each step is clear and straightforward.
+    </p>
+
+    <!-- Step Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+
+      <!-- Step 1 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 1px solid rgba(27,30,43,0.04); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 36px; height: 36px; border-radius: 50%; font-weight: 800; font-size: 16px; flex-shrink: 0;">1</span>
+          <span style="font-weight: 700; font-size: 17px; color: #1b1e2b;" id="step1Title">Invite friends and family willing to work</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #4a4f6b; margin: 0 0 12px 0; flex: 1;" id="step1Desc">
+          Start with people you trust. Invite friends or family members who are motivated to earn a stable income through effort.
+        </p>
+        <div style="width: 100%; background: #f4f6fc; border-radius: 12px; padding: 8px 12px; text-align: center; font-size: 13px; color: #5a6080; border: 1px dashed rgba(27,30,43,0.06);">
+          💡 Recommendation: ⭐⭐⭐⭐⭐
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 1px solid rgba(27,30,43,0.04); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; width: 36px; height: 36px; border-radius: 50%; font-weight: 800; font-size: 16px; flex-shrink: 0;">2</span>
+          <span style="font-weight: 700; font-size: 17px; color: #1b1e2b;" id="step2Title">Share your exclusive invite link</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #4a4f6b; margin: 0 0 12px 0; flex: 1;" id="step2Desc">
+          Copy your unique invite link from the generator below and send it to the friend you're inviting. This is their entry point.
+        </p>
+        <div style="width: 100%; background: #f4f6fc; border-radius: 12px; padding: 8px 12px; text-align: center; font-size: 13px; color: #5a6080; border: 1px dashed rgba(27,30,43,0.06);">
+          🔗 <a href="#" style="color: #667eea; font-weight: 600; text-decoration: none;" id="step2Link">Click to copy my invite link</a>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 1px solid rgba(27,30,43,0.04); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #48bb78, #38a169); color: white; width: 36px; height: 36px; border-radius: 50%; font-weight: 800; font-size: 16px; flex-shrink: 0;">3</span>
+          <span style="font-weight: 700; font-size: 17px; color: #1b1e2b;" id="step3Title">Guide them to register a work account</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #4a4f6b; margin: 0 0 12px 0; flex: 1;" id="step3Desc">
+          Help your friend open the registration page via your link and fill in the required details to create their work account.
+        </p>
+        <div style="width: 100%; background: #f4f6fc; border-radius: 12px; padding: 8px 12px; text-align: center; font-size: 13px; color: #5a6080; border: 1px dashed rgba(27,30,43,0.06);">
+          📝 Need: Phone number, email address
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 1px solid rgba(27,30,43,0.04); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; width: 36px; height: 36px; border-radius: 50%; font-weight: 800; font-size: 16px; flex-shrink: 0;">4</span>
+          <span style="font-weight: 700; font-size: 17px; color: #1b1e2b;" id="step4Title">Guide them to link their home address</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #4a4f6b; margin: 0 0 12px 0; flex: 1;" id="step4Desc">
+          Instruct your friend to add their correct home address in the account settings. This is essential for task validation.
+        </p>
+        <div style="width: 100%; background: #f4f6fc; border-radius: 12px; padding: 8px 12px; text-align: center; font-size: 13px; color: #5a6080; border: 1px dashed rgba(27,30,43,0.06);">
+          📌 Ensure the address is accurate
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 1px solid rgba(27,30,43,0.04); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 36px; height: 36px; border-radius: 50%; font-weight: 800; font-size: 16px; flex-shrink: 0;">5</span>
+          <span style="font-weight: 700; font-size: 17px; color: #1b1e2b;" id="step5Title">Guide them to complete 2-day internship tasks</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #4a4f6b; margin: 0 0 12px 0; flex: 1;" id="step5Desc">
+          Explain the daily intern tasks clearly and encourage them to complete them with quality for two consecutive days. This is key to earning rewards.
+        </p>
+        <div style="width: 100%; background: #f4f6fc; border-radius: 12px; padding: 8px 12px; text-align: center; font-size: 13px; color: #5a6080; border: 1px dashed rgba(27,30,43,0.06);">
+          ⏳ 2 consecutive days · Only <strong>3~10 minutes</strong> per day
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 1px solid rgba(27,30,43,0.04); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f5576c, #ed64a6); color: white; width: 36px; height: 36px; border-radius: 50%; font-weight: 800; font-size: 16px; flex-shrink: 0;">6</span>
+          <span style="font-weight: 700; font-size: 17px; color: #1b1e2b;" id="step6Title">Share Grace's Telegram</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #4a4f6b; margin: 0 0 12px 0; flex: 1;" id="step6Desc">
+          Ask your friend to add Grace on Telegram to receive official updates, support, and task guidance.<br>
+          <span style="font-weight: 600; color: #ed8936;" id="step6Bonus">🎁 Successfully adding Grace on Telegram allows them to claim the 50 ETB intern training bonus.</span>
+        </p>
+        <div style="width: 100%; display: flex; gap: 8px; flex-wrap: wrap;">
+          <a href="https://telegram.me/Grace5390" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 100px; background: #0088cc; color: white; padding: 8px 12px; border-radius: 40px; text-decoration: none; text-align: center; font-weight: 600; font-size: 13px; transition: all 0.2s;" onmouseover="this.style.background='#0077b3'" onmouseout="this.style.background='#0088cc'">✈️ @Grace5390</a>
+          <a href="https://telegram.me/Grace4429" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 100px; background: #0088cc; color: white; padding: 8px 12px; border-radius: 40px; text-decoration: none; text-align: center; font-weight: 600; font-size: 13px; transition: all 0.2s;" onmouseover="this.style.background='#0077b3'" onmouseout="this.style.background='#0088cc'">✈️ @Grace4429</a>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 2px solid #ed8936; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start; grid-column: 1 / -1;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(237,137,54,0.12)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ed8936, #f6ad55); color: white; width: 40px; height: 40px; border-radius: 50%; font-weight: 800; font-size: 18px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(237,137,54,0.3);">⭐</span>
+          <span style="font-weight: 700; font-size: 18px; color: #1b1e2b;" id="step7Title">7. Critical Step: Activate Premium Account</span>
+        </div>
+        <div style="background: #fff8f0; border-radius: 12px; padding: 16px; width: 100%; border-left: 4px solid #ed8936; margin-bottom: 12px;">
+          <p style="font-size: 14px; line-height: 1.8; color: #2d324a; margin: 0;" id="step7Desc">
+            <span style="font-weight: 700; color: #ed8936;">⚠️ Important Notice:</span>
+            Inform your friend that after completing the internship, they need to make a <strong>one-time activation deposit</strong> to upgrade to a Premium account to continue working.
+            The contract period is <strong>1 year</strong>, and the deposit will be <strong>fully refunded after the 1-year contract ends</strong>.
+          </p>
+        </div>
+        <div style="width: 100%; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: flex-start;">
+          <span style="background: #f4f6fc; border-radius: 40px; padding: 4px 16px; font-size: 13px; color: #4a4f6b; border: 1px solid rgba(27,30,43,0.04);" id="step7Tag1">💰 One-time deposit</span>
+          <span style="background: #f4f6fc; border-radius: 40px; padding: 4px 16px; font-size: 13px; color: #4a4f6b; border: 1px solid rgba(27,30,43,0.04);" id="step7Tag2">📅 Contract: 1 year</span>
+          <span style="background: #f4f6fc; border-radius: 40px; padding: 4px 16px; font-size: 13px; color: #4a4f6b; border: 1px solid rgba(27,30,43,0.04);" id="step7Tag3">✅ Full refund upon completion</span>
+        </div>
+      </div>
+
+      <!-- Step 8 -->
+      <div style="background: white; border-radius: 20px; padding: 24px 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); border: 2px solid #667eea; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: stretch; grid-column: 1 / -1;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 16px 40px rgba(102,126,234,0.12)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.04)';">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; width: 100%;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 40px; height: 40px; border-radius: 50%; font-weight: 800; font-size: 18px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(102,126,234,0.3);">🎯</span>
+          <span style="font-weight: 700; font-size: 18px; color: #1b1e2b;" id="step8Title">8. Extra Bonus: Activating Premium Account</span>
+        </div>
+        <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 2; min-width: 200px;">
+            <p style="font-size: 14px; line-height: 1.8; color: #2d324a; margin: 0 0 12px 0;" id="step8Desc">
+              When the intern you invited activates a Premium account and becomes an official PG Mall employee, you will receive an additional referral bonus based on their activation level:
+            </p>
+            <div style="background: #f4f6fc; border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; border-left: 4px solid #667eea;">
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; border-bottom: 1px dashed rgba(0,0,0,0.05);">
+                <span style="font-weight: 600;" id="bonusLevel1">1. Activate Junior Partner</span>
+                <span style="font-weight: 700; color: #667eea;" id="bonusAmount1">Referral gets 200 ETB</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; border-bottom: 1px dashed rgba(0,0,0,0.05);">
+                <span style="font-weight: 600;" id="bonusLevel2">2. Activate VIP1</span>
+                <span style="font-weight: 700; color: #667eea;" id="bonusAmount2">Referral gets 500 ETB</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px;">
+                <span style="font-weight: 600;" id="bonusLevel3">3. Activate VIP2</span>
+                <span style="font-weight: 700; color: #667eea;" id="bonusAmount3">Referral gets 1,600 ETB</span>
+              </div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(102,126,234,0.06) 0%, rgba(118,75,162,0.06) 100%); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; border: 1px solid rgba(102,126,234,0.10);">
+              <div style="font-weight: 700; color: #1b1e2b; font-size: 15px; margin-bottom: 8px;" id="calcExample">💡 Earning Calculation Example</div>
+              <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
+                <div style="font-weight: 600; color: #1b1e2b; font-size: 14px; margin-bottom: 4px;" id="calcExample1">📌 Intern activates <span style="color: #667eea;">Junior Partner</span></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 4px;">
+                  <span style="font-size: 13px; background: white; padding: 2px 12px; border-radius: 30px; border: 1px solid rgba(102,126,234,0.10);" id="calcExample1a">💰 Training Bonus: <strong>50 ETB</strong></span>
+                  <span style="font-size: 13px; background: white; padding: 2px 12px; border-radius: 30px; border: 1px solid rgba(102,126,234,0.10);" id="calcExample1b">🎯 Referral Reward: <strong>200 ETB</strong></span>
+                  <span style="font-size: 13px; background: white; padding: 2px 12px; border-radius: 30px; border: 1px solid rgba(102,126,234,0.10);" id="calcExample1c">📈 Permanent Dividend: <strong>0.2%</strong></span>
+                </div>
+                <div style="font-size: 14px; color: #1b1e2b; background: rgba(102,126,234,0.08); border-radius: 6px; padding: 4px 12px; display: inline-block; margin-top: 4px;">
+                  ✅ Total: <strong>250 ETB</strong> one-time bonus <span style="font-weight: 400; color: #5a6080; font-size: 13px;" id="calcExample1Note">(More referrals = more bonuses)</span>
+                </div>
+                <div style="font-size: 13px; color: #5a6080; margin-top: 4px; border-top: 1px solid rgba(0,0,0,0.04); padding-top: 4px;" id="calcExample1d">
+                  📊 1 Junior Partner daily dividend: 3,600 × 0.2% = <strong>7.2 ETB</strong>/day
+                </div>
+                <div style="font-size: 13px; color: #5a6080; margin-top: 2px;" id="calcExample1e">
+                  📊 10 Junior Partners daily dividend: 3,600 × 10 × 0.2% = <strong>72 ETB</strong>/day
+                </div>
+              </div>
+              <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; border: 1px solid rgba(237,137,54,0.08);">
+                <div style="font-weight: 600; color: #1b1e2b; font-size: 14px; margin-bottom: 4px;" id="calcExample2">📌 Intern activates <span style="color: #ed8936;">VIP 1 Premium Account</span></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 4px;">
+                  <span style="font-size: 13px; background: white; padding: 2px 12px; border-radius: 30px; border: 1px solid rgba(237,137,54,0.10);" id="calcExample2a">💰 Training Bonus: <strong>50 ETB</strong></span>
+                  <span style="font-size: 13px; background: white; padding: 2px 12px; border-radius: 30px; border: 1px solid rgba(237,137,54,0.10);" id="calcExample2b">🎯 Referral Reward: <strong>500 ETB</strong></span>
+                  <span style="font-size: 13px; background: white; padding: 2px 12px; border-radius: 30px; border: 1px solid rgba(237,137,54,0.10);" id="calcExample2c">📈 Permanent Dividend: <strong>0.2%</strong></span>
+                  <span style="font-size: 13px; background: white; padding: 2px 12px; border-radius: 30px; border: 1px solid rgba(237,137,54,0.10);" id="calcExample2d">🧾 Tax Subsidy: <strong>10%</strong></span>
+                </div>
+                <div style="font-size: 14px; color: #1b1e2b; background: rgba(237,137,54,0.10); border-radius: 6px; padding: 4px 12px; display: inline-block; margin-top: 4px;">
+                  ✅ Total: <strong>550 ETB</strong> one-time bonus  |  📅 Fixed Salary: Paid on the 1st of each month (amount depends on number of referrals)
+                </div>
+                <div style="font-size: 13px; color: #5a6080; margin-top: 4px; border-top: 1px solid rgba(0,0,0,0.04); padding-top: 4px;" id="calcExample2e">
+                  📊 1 VIP1 daily dividend: 24,000 × 0.2% = <strong>48 ETB</strong>/day
+                </div>
+                <div style="font-size: 13px; color: #5a6080; margin-top: 2px;" id="calcExample2f">
+                  📊 10 VIP1 daily dividend: 24,000 × 0.2% × 10 = <strong>480 ETB</strong>/day
+                </div>
+              </div>
+              <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 10px 14px;">
+                <div style="font-weight: 600; color: #1b1e2b; font-size: 14px; margin-bottom: 4px;" id="calcExample3">📌 Employee promotes from Junior to <span style="color: #ed8936;">VIP2</span></div>
+                <div style="font-size: 13px; color: #5a6080; margin-top: 2px;" id="calcExample3a">
+                  📊 1 VIP2 daily dividend: 24,000 × 0.2% = <strong>48 ETB</strong>/day
+                </div>
+                <div style="font-size: 13px; color: #5a6080; margin-top: 2px;" id="calcExample3b">
+                  📊 10 VIP2 daily dividend: 24,000 × 0.2% × 10 = <strong>480 ETB</strong>/day
+                </div>
+              </div>
+              <div style="font-size: 13px; color: #ed8936; margin: 8px 0 0 0; border-top: 1px solid rgba(0,0,0,0.04); padding-top: 6px; font-weight: 600;" id="calcExampleNote">
+                ⭐ The dividend increases as your employees' levels rise — higher levels mean higher permanent dividends!
+              </div>
+            </div>
+            <div style="background: #fff8f0; border-radius: 8px; padding: 8px 12px; border: 1px solid #f6ad55;">
+              <p style="font-size: 13px; color: #5a6080; margin: 0;" id="bonusNote">
+                📌 Actual bonus amounts are subject to the announcements made by administrators in the group.
+              </p>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 120px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+            <img src="https://s3.bmp.ovh/2026/07/16/7MJUatoF.jpg" alt="Referral bonus illustration" style="width: 100%; max-width: 280px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.04);" onerror="this.style.display='none'">
+            <div style="font-size: 11px; color: #8e95b3;" id="bonusImageCaption">📷 Bonus Info · Reference</div>
+            <img src="https://s3.bmp.ovh/2026/07/16/BLna3M8R.png" alt="Amharic Salary Table" style="width: 100%; max-width: 280px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.04);" onerror="this.style.display='none'">
+            <div style="font-size: 11px; color: #8e95b3;">📊 Salary Table (Amharic)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Scroll Hint ===== -->
+  <div class="scroll-hint" id="scrollHint" onclick="scrollDown()">
+    <span class="hint-text">
+      <span id="scrollHintText">👇 Scroll down to see full content</span>
+      <span class="arrow down">⬇️</span>
+      <span class="arrow up">⬆️</span>
+      <span style="font-size:12px; opacity:0.7; font-weight:400;" id="scrollHintAction">(click or scroll)</span>
+    </span>
+  </div>
+
+  <!-- ===== 📌 How to Invite ===== -->
+  <div class="card">
+    <div class="section-title"><span class="emoji">📌</span> <span id="inviteLabel">How to Invite:</span><span class="line"></span></div>
+    <div style="display: flex; gap: 28px; align-items: stretch; flex-wrap: wrap;">
+      <div style="flex: 1.2; min-width: 240px;">
+        <div class="step-text" id="inviteSteps" style="font-size:14px; line-height:2.2; color:#2d324a;">
+          ① Log in to your work account<br>
+          ② Click <code>👤 User</code> or <code>👥 My Team</code><br>
+          ③ Copy your <span class="highlight-step">personal invite code</span><br>
+          ④ Enter the code on the right → Click "Generate Link" → Click "Copy" to share with friends
+        </div>
+        <div class="motivation-box" id="motivationBox" style="margin-top:14px; padding:16px 20px; background:linear-gradient(135deg, rgba(237,137,54,0.08) 0%, rgba(237,137,54,0.04) 100%); border-radius:16px; border-left:4px solid #ed8936; border:1px solid rgba(237,137,54,0.12); border-left-width:4px;">
+          <div class="motivation-text" id="motivationText">
+            <span class="emoji-big" style="font-size:20px;">💭</span> <strong id="motivationQ1">Are you content with only a 60 ETB daily salary?</strong><br>
+            <span id="motivationT1">As a Junior Partner, your daily work earns only <strong>60 ETB</strong>.</span><br>
+            <span id="motivationT2">Can 60 ETB really provide the ideal life for you and your family in Ethiopia?</span><br><br>
+            <span class="emoji-big" style="font-size:20px;">🚀</span> <strong id="motivationQ2">Change starts with recruitment!</strong><br>
+            <span id="motivationT3">You now have a valuable opportunity — recruit your subordinates to create more income for you.</span><br>
+            <span id="motivationT4">Only by continuously recruiting employees can your income <span class="highlight-gold" style="color:#ed8936; font-weight:700;">continue to grow</span> and break through the 60 ETB daily limit.</span><br><br>
+            <span class="emoji-big" style="font-size:20px;">👨👩👧👦</span> <strong id="motivationQ3">Think about your family, your children, your partner.</strong><br>
+            <span id="motivationT5">They deserve better living conditions, better education, and a brighter future.</span><br>
+            <span id="motivationT6">Share this opportunity with people in need,</span><br>
+            <span id="motivationT7">provide them with a chance to change their lives, and at the same time, create a <span class="highlight-big" style="font-size:18px; font-weight:800; color:#ed8936;">more valuable and significant income</span> for yourself.</span><br><br>
+            <div class="motivation-divider" style="height:1px; background:linear-gradient(90deg, rgba(237,137,54,0.20) 0%, transparent 100%); margin:10px 0;"></div>
+            <span style="font-size:15px; font-weight:600; color:#1b1e2b;" id="motivationT8">💰 Every employee you recruit is a step towards your financial freedom.</span><br>
+            <span style="font-size:14px; color:#ed8936; font-weight:700;" id="motivationT9">⭐ The bigger your team, the higher your income — from 60 ETB to 6,000 ETB, 60,000 ETB, all depends on your action.</span>
+            <div style="margin-top:10px; padding:12px 16px; background:rgba(27,30,43,0.04); border-radius:12px; border-left:4px solid #1b1e2b;">
+              <p style="font-size:14px; line-height:1.8; color:#2d324a; margin:0;" id="motivationT10">
+                <strong>The company only welcomes people who truly want to earn money.</strong><br>
+                Those who are willing to invest time and complete tasks seriously will receive our full support.<br>
+                Those who just want to wait for money to fall from the sky are not needed here.<br><br>
+                If you want to earn, I will help you.<br>
+                If you don't want to act, no one can help you.<br>
+                <span style="font-weight:700; color:#ed8936;" id="motivationT11">Earning money requires action.</span>
+              </p>
+            </div>
+            <div style="margin-top:10px;">
+              <span class="motivation-call" style="display:inline-block; margin-top:6px; background:#ed8936; color:white; padding:4px 20px; border-radius:30px; font-size:14px; font-weight:700;" id="motivationCTA">🔥 Start recruiting now · Change begins today</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: #ffffff; border-radius: 16px; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); border: 1px solid rgba(27,30,43,0.06);">
+          <img src="https://s3.bmp.ovh/2026/07/09/3vsiaXW1.png" alt="Invite link location guide" style="width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(27,30,43,0.04); display: block; object-fit: contain; background: #f8f9fc;" onerror="this.style.display='none'">
+          <div style="font-size: 11px; color: #8e95b3; text-align: center; margin-top: 8px; letter-spacing: 0.3px;" id="inviteImageCaption">📷 Example · Copy invite code from "My Team"</div>
+        </div>
+        <div class="invite-generator" id="inviteGenerator" style="margin-top:0; padding:16px 18px; background:rgba(255,255,255,0.6); border-radius:16px; border:1px solid rgba(27,30,43,0.06); backdrop-filter: blur(4px);">
+          <span class="label" id="generatorLabel" style="font-size:12px; font-weight:600; color:#4a4f6b; margin-bottom:8px; display:block;">🔗 Enter your 6-digit invite code to generate your exclusive link:</span>
+          <div class="input-row" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <input type="text" id="inviteCodeInput" placeholder="e.g. 337375" maxlength="6" pattern="\d{6}" style="flex:1; min-width:120px; padding:10px 14px; border:1px solid rgba(27,30,43,0.12); border-radius:12px; font-size:14px; font-weight:600; color:#1b1e2b; background:white; outline:none; transition:border-color 0.2s; font-family:inherit;" />
+            <button class="btn-generate" id="generateBtn" onclick="generateInviteLink()" style="padding:10px 20px; background:#1b1e2b; color:white; border:none; border-radius:12px; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; white-space:nowrap;" id="generateBtnText">Generate Link</button>
+          </div>
+          <div class="generated-link" id="generatedLink" style="display:none; margin-top:10px; padding:10px 14px; background:white; border-radius:10px; border:1px solid rgba(27,30,43,0.06); align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; word-break:break-all;">
+            <span class="link-text" id="generatedLinkText">https://www.pgmall1234.com/register?invite_code=<span class="code-highlight">337375</span></span>
+            <button class="btn-copy" id="copyBtn" onclick="copyGeneratedLink()" style="padding:6px 16px; background:#ed8936; color:white; border:none; border-radius:30px; font-size:12px; font-weight:600; cursor:pointer; transition:all 0.2s; white-space:nowrap; display:flex; align-items:center; gap:4px;" id="copyBtnText">📋 Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VIP Staff ===== -->
+  <div class="card" style="background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(245,247,250,0.95) 100%); border: 1px solid rgba(27,30,43,0.06);">
+    <div class="section-title">
+      <span class="emoji">🏆</span>
+      <span style="background: linear-gradient(135deg, #1b1e2b, #ed8936); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="vipTitle">VIP Staff · Tax Subsidies & Fixed Salary</span>
+      <span class="line"></span>
+    </div>
+    <p style="text-align: center; font-size: 15px; color: #5a6080; margin-bottom: 20px; max-width: 650px; margin-left: auto; margin-right: auto;" id="vipSub">
+      If they become a VIP staff member via your exclusive invite link, you can apply for a <strong>10%~20%</strong> tax subsidy by sending the payout confirmation to the group:
+    </p>
+    <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+      <div style="flex: 1.5; min-width: 280px; display: flex; flex-direction: column; gap: 0;">
+        <div style="overflow-x: auto; border-radius: 16px 16px 0 0; border: 1px solid rgba(27,30,43,0.06); border-bottom: none;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: white;">
+            <thead>
+              <tr style="background: #1b1e2b; color: white;">
+                <th style="padding: 14px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid #1b1e2b;" id="vipTableHead1">Number of VIP Staff</th>
+                <th style="padding: 14px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid #1b1e2b;" id="vipTableHead2">Fixed Salary (1st of each month)</th>
+                <th style="padding: 14px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid #1b1e2b;" id="vipTableHead3">Tax Subsidy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.04);">
+                <td style="padding: 12px 16px; font-weight: 600;" id="vipRow1a">1 VIP Staff</td>
+                <td style="padding: 12px 16px; color: #8e95b3;" id="vipRow1b">No fixed salary</td>
+                <td style="padding: 12px 16px; color: #ed8936; font-weight: 700;" id="vipRow1c">10%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.04); background: rgba(237,137,54,0.04);">
+                <td style="padding: 12px 16px; font-weight: 600;" id="vipRow2a">2 – 4 VIP Staff</td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #1b1e2b;" id="vipRow2b">200 ETB</td>
+                <td style="padding: 12px 16px; color: #ed8936; font-weight: 700;" id="vipRow2c">10%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.04);">
+                <td style="padding: 12px 16px; font-weight: 600;" id="vipRow3a">5 – 9 VIP Staff</td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #1b1e2b;" id="vipRow3b">3,700 ETB</td>
+                <td style="padding: 12px 16px; color: #ed8936; font-weight: 700;" id="vipRow3c">10%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.04); background: rgba(237,137,54,0.04);">
+                <td style="padding: 12px 16px; font-weight: 600;" id="vipRow4a">10 – 19 VIP Staff</td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #1b1e2b;" id="vipRow4b">18,000 ETB</td>
+                <td style="padding: 12px 16px; color: #ed8936; font-weight: 700;" id="vipRow4c">15%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.04);">
+                <td style="padding: 12px 16px; font-weight: 600;" id="vipRow5a">20 – 29 VIP Staff</td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #1b1e2b;" id="vipRow5b">44,000 ETB</td>
+                <td style="padding: 12px 16px; color: #ed8936; font-weight: 700;" id="vipRow5c">20%</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(0,0,0,0.04); background: rgba(237,137,54,0.04);">
+                <td style="padding: 12px 16px; font-weight: 600;" id="vipRow6a">30 – 49 VIP Staff</td>
+                <td style="padding: 12px 16px; font-weight: 700; color: #1b1e2b;" id="vipRow6b">130,000 ETB</td>
+                <td style="padding: 12px 16px; color: #ed8936; font-weight: 700;" id="vipRow6c">20%</td>
+              </tr>
+              <tr style="background: rgba(237,137,54,0.08); border: 2px solid #ed8936;">
+                <td style="padding: 12px 16px; font-weight: 700; color: #1b1e2b;" id="vipRow7a">50+ VIP Staff</td>
+                <td style="padding: 12px 16px; font-weight: 800; color: #ed8936; font-size: 16px;" id="vipRow7b">240,000 ETB</td>
+                <td style="padding: 12px 16px; color: #ed8936; font-weight: 700;" id="vipRow7c">20%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="padding: 12px 16px; background: rgba(237,137,54,0.06); border-radius: 0 0 16px 16px; border: 1px solid rgba(27,30,43,0.06); border-top: none;">
+          <p style="font-size: 13px; color: #5a6080; margin: 0; line-height: 1.8;" id="vipFooter">
+            📌 How to apply for tax subsidy: Send the payout confirmation to the group after each withdrawal.<br>
+            📌 Fixed salary payment: Automatically disbursed on the 1st of each month.<br>
+            📌 Actual amounts are subject to announcements by group administrators.
+          </p>
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 160px; text-align: center; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 0;">
+        <img src="https://s3.bmp.ovh/2026/07/09/oAVxS14D.jpg" alt="Team fixed salary reward chart" style="width: 100%; max-width: 280px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.05); display: block; margin: 0 auto;" onerror="this.style.display='none'">
+        <div style="font-size: 11px; color: #8e95b3; margin-top: 6px;" id="vipImageCaption">📷 Team Salary · Reference</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Closing Message ===== -->
+  <div class="card">
+    <div class="closing-message" style="background: rgba(255,255,255,0.3); border-radius: 20px; padding: 28px 30px; text-align: center; border: 1px solid rgba(255,255,255,0.3);">
+      <div style="max-width: 750px; margin: 0 auto;">
+        <p style="font-size: 16px; line-height: 2; color: #2d324a; font-weight: 450; margin-bottom: 24px;" id="closingMessage">
+          <span style="font-size: 1.4rem;">🙏</span> <strong>God and Mother Mary teach us:</strong><br>
+          "To those who have, more will be given; to those who have not, even what they have will be taken away."<br>
+          But more importantly, <strong>we must love one another and share with each other</strong>.<br><br>
+          The opportunity you hold is not just for yourself — it is for your family, your friends, and your fellow citizens who are struggling to make ends meet.<br>
+          <span style="color: #ed8936; font-weight: 700;">Look at the lives of these Ethiopian brothers and sisters</span> — they work hard every day just to put food on the table and send their children to school.<br><br>
+          <span style="font-size: 1.2rem; font-weight: 700;">📸 Their current reality:</span>
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 20px 0 28px;">
+          <img src="https://s3.bmp.ovh/2026/07/16/rSZz2Huf.jpg" alt="Ethiopian life 1" style="width:100%; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.04); aspect-ratio: 1/1; object-fit: cover;" onerror="this.style.display='none'">
+          <img src="https://s3.bmp.ovh/2026/07/16/PYbS3H08.jpg" alt="Ethiopian life 2" style="width:100%; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.04); aspect-ratio: 1/1; object-fit: cover;" onerror="this.style.display='none'">
+          <img src="https://s3.bmp.ovh/2026/07/16/v5joT27e.jpg" alt="Ethiopian life 3" style="width:100%; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.04); aspect-ratio: 1/1; object-fit: cover;" onerror="this.style.display='none'">
+          <img src="https://s3.bmp.ovh/2026/07/16/2sEXo7XC.jpg" alt="Ethiopian life 4" style="width:100%; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.04); aspect-ratio: 1/1; object-fit: cover;" onerror="this.style.display='none'">
+          <img src="https://s3.bmp.ovh/2026/07/16/8drxFDUP.jpg" alt="Ethiopian life 5" style="width:100%; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.04); aspect-ratio: 1/1; object-fit: cover;" onerror="this.style.display='none'">
+        </div>
+        <p style="font-size: 16px; line-height: 2; color: #2d324a; font-weight: 450;">
+          <strong style="color: #1b1e2b;">They need change, and you can be the bridge.</strong><br>
+          God gives us resources not to keep for ourselves, but to share.<br>
+          Mother Mary teaches us with her loving example — <span style="color: #ed8936; font-weight: 700;">"If you have the power to do good, do not withhold it."</span><br><br>
+          <span style="font-size: 1.2rem;">❤️ Share this work opportunity with those around you,</span><br>
+          <span style="font-size: 1.2rem;">❤️ Help them earn a stable income,</span><br>
+          <span style="font-size: 1.2rem;">❤️ Give every family hope for a better future.</span><br><br>
+          <strong style="color: #1b1e2b;">Your one share could change someone's life forever.</strong><br>
+          <span style="color: #ed8936; font-weight: 700;">Let us act together — for one another, for the future of Ethiopia!</span> 🙏🇪🇹
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 📝 How to Apply ===== -->
+  <div class="card" style="background: rgba(255,255,255,0.88);">
+    <div class="section-title">
+      <span class="emoji">📝</span>
+      <span id="applyTitle">How to Apply · Join the Discussion Group</span>
+      <span class="line"></span>
+    </div>
+    <div style="background: rgba(27,30,43,0.03); border-radius:16px; padding:16px 20px; border-left:4px solid #1b1e2b; margin-bottom:16px;">
+      <p style="font-size:14px; line-height:1.8; color:#2d324a;" id="applyText">
+        After meeting the conditions, new users should submit their application in the <strong>activity discussion group</strong> using the required format <span style="color:#8e95b3; font-size:12px;">(attach the new user's account and qualification screenshot)</span>.<br><br>
+        Our staff will verify the information and distribute the corresponding rewards.
+      </p>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px; margin-bottom:20px;">
+      <a href="https://t.me/+Hstz9c3wnntiODVl" target="_blank" rel="noopener noreferrer" class="btn btn-group" style="background: linear-gradient(135deg, #1b1e2b 0%, #2a2f45 100%); box-shadow: 0 6px 24px rgba(27,30,43,0.25); padding:16px 32px; font-size:17px; border-radius:60px; text-decoration:none; color:white; display:inline-flex; align-items:center; gap:12px; width:100%; justify-content:center; transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 32px rgba(27,30,43,0.35)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 24px rgba(27,30,43,0.25)';">
+        <span style="font-size:24px;">👥</span>
+        <span>
+          <span id="btnJoinGroup">Join Activity Discussion Group</span>
+          <span style="display:block; font-size:12px; font-weight:400; opacity:0.7;" id="btnJoinSub">Jump to Telegram Group · PG Discussion 8810</span>
+        </span>
+      </a>
+      <div style="font-size:12px; color:#8e95b3; text-align:center; background:rgba(255,255,255,0.3); padding:4px 16px; border-radius:30px;" id="groupNote">
+        📌 The discussion group is only open to <strong style="color:#1b1e2b;">official staff</strong>. Please complete the onboarding process before joining.
+      </div>
+    </div>
+    <div style="height:1px; background: linear-gradient(90deg, rgba(27,30,43,0.06) 0%, rgba(27,30,43,0.12) 50%, rgba(27,30,43,0.06) 100%); margin:4px 0 18px;"></div>
+    <div style="padding:0 2px;">
+      <div style="font-size:18px; font-weight:700; color:#1b1e2b; margin-bottom:10px; display:flex; align-items:center; gap:8px;" id="whyJoinTitle">
+        <span>✅</span> Why join the employee discussion group?
+      </div>
+      <p style="font-size:14px; color:#4a4f6b; margin-bottom:14px; line-height:1.7;" id="whyJoinSub">
+        Dear, joining the discussion group gives you <strong>four direct benefits</strong>:
+      </p>
+      <div style="display:grid; gap:10px;">
+        <div style="background:rgba(255,255,255,0.5); border-radius:14px; padding:14px 18px; border-left:4px solid #ed8936; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.5)'">
+          <div style="font-weight:700; color:#1b1e2b; font-size:15px;" id="whyJoin1">1️⃣ Get activity information first</div>
+          <div style="font-size:14px; color:#5a6080; line-height:1.6; margin-top:2px;" id="whyJoin1d">The company regularly launches limited-time reward activities, upgrade subsidies, holiday benefits, etc. These are announced in the discussion group first. If you're not in the group, you might miss earning opportunities.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.5); border-radius:14px; padding:14px 18px; border-left:4px solid #667eea; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.5)'">
+          <div style="font-weight:700; color:#1b1e2b; font-size:15px;" id="whyJoin2">2️⃣ Learn from others' success</div>
+          <div style="font-size:14px; color:#5a6080; line-height:1.6; margin-top:2px;" id="whyJoin2d">Many experienced employees share their tips on completing tasks, inviting friends, and the withdrawal process. Learning from them helps you grow faster.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.5); border-radius:14px; padding:14px 18px; border-left:4px solid #48bb78; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.5)'">
+          <div style="font-weight:700; color:#1b1e2b; font-size:15px;" id="whyJoin3">3️⃣ Ask questions anytime</div>
+          <div style="font-size:14px; color:#5a6080; line-height:1.6; margin-top:2px;" id="whyJoin3d">If you encounter issues — stuck pages, commission not credited — just ask in the group. Someone will help you, so you don't have to struggle alone.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.5); border-radius:14px; padding:14px 18px; border-left:4px solid #f5576c; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.5)'">
+          <div style="font-weight:700; color:#1b1e2b; font-size:15px;" id="whyJoin4">4️⃣ See real withdrawal records</div>
+          <div style="font-size:14px; color:#5a6080; line-height:1.6; margin-top:2px;" id="whyJoin4d">Employees share payout screenshots daily. Seeing others actually receiving money is more convincing than anything I say.</div>
+        </div>
+      </div>
+      <div style="margin-top:14px; padding:12px 18px; background:linear-gradient(135deg, rgba(237,137,54,0.10) 0%, rgba(237,137,54,0.04) 100%); border-radius:12px; text-align:center; border:1px solid rgba(237,137,54,0.12);">
+        <span style="font-size:15px; font-weight:600; color:#1b1e2b;" id="whyJoinSummary">📌 "Joining the group = Don't miss activities + Learn from experience + Get help + See real payouts."</span>
+      </div>
+      <div style="margin-top:14px; padding:14px 18px; background:rgba(27,30,43,0.02); border-radius:12px; text-align:center; border:1px dashed rgba(27,30,43,0.08);">
+        <div style="font-size:15px; font-weight:700; color:#1b1e2b; margin-bottom:4px;" id="howJoinTitle">🔗 How to join?</div>
+        <div style="font-size:14px; color:#5a6080; line-height:1.8;" id="howJoinDesc">
+          Click the <strong style="color:#1b1e2b;">"Join Activity Discussion Group"</strong> button above, or copy and open this link in Telegram:<br>
+          <a href="https://t.me/+Hstz9c3wnntiODVl" target="_blank" rel="noopener noreferrer" style="color:#ed8936; font-weight:600; text-decoration:underline; word-break:break-all; font-size:15px;">https://t.me/+Hstz9c3wnntiODVl</a><br>
+          <span style="font-size:13px; color:#8e95b3;" id="howJoinNote">After requesting to join, please check the group announcement for basic rules.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 📌 Important Notes ===== -->
+  <div class="card">
+    <div class="section-title"><span class="emoji">📌</span> <span id="tipsTitle">Important Notes</span><span class="line"></span></div>
+    <ul class="tip-list">
+      <li><span class="dot">•</span><span id="tip1">Rewards will be distributed within <strong>10 minutes</strong> after verification</span></li>
+      <li><span class="dot">•</span><span id="tip2">Please ensure the information provided is <strong>true and accurate</strong>. False information will lead to <span class="highlight">disqualification</span></span></li>
+      <li><span class="dot">•</span><span id="tip3"><strong>PG-MALL</strong> reserves the right of final interpretation of this activity</span></li>
+    </ul>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <div class="card" style="background: rgba(255,255,255,0.5);">
+    <div class="section-title"><span class="emoji">❓</span> <span id="faqTitle">FAQ</span><span class="line"></span></div>
+    <div style="display:grid; gap:10px;">
+      <div class="faq-item"><div class="q" id="faq1q">💰 Do I need to pay to join?</div><div class="a" id="faq1a">Completely free, zero barrier to entry.</div></div>
+      <div class="faq-item"><div class="q" id="faq2q">⏱️ How long does the referral reward take?</div><div class="a" id="faq2a">After your friend completes the internship, rewards are sent within <strong>10 minutes</strong> after verification.</div></div>
+      <div class="faq-item"><div class="q" id="faq3q">👥 How many people can I invite?</div><div class="a" id="faq3a"><strong>Unlimited</strong> — the more you invite, the more you earn.</div></div>
+      <div class="faq-item"><div class="q" id="faq4q">📌 How much can my friend earn?</div><div class="a" id="faq4a">Your friend can earn <strong>2,100 ETB</strong> by completing the 2-day internship.</div></div>
+    </div>
+  </div>
+
+  <!-- ===== 📤 Share Section ===== -->
+  <div class="card">
+    <div class="section-title"><span class="emoji">📤</span> <span id="shareTitle">Share with Friends · Earn Together</span><span class="line"></span></div>
+    <div class="invite-generator" id="shareInviteGenerator" style="margin-bottom:16px;">
+      <span class="label" id="shareGeneratorLabel">🔗 Enter your 6-digit invite code to generate your exclusive link:</span>
+      <div class="input-row">
+        <input type="text" id="shareInviteCodeInput" placeholder="e.g. 337375" maxlength="6" pattern="\d{6}" />
+        <button class="btn-generate" id="shareGenerateBtn" onclick="generateShareInviteLink()" id="shareGenerateBtnText">Generate Link</button>
+      </div>
+      <div class="generated-link" id="shareGeneratedLink" style="display:none;">
+        <span class="link-text" id="shareGeneratedLinkText">https://www.pgmall1234.com/register?invite_code=<span class="code-highlight">337375</span></span>
+        <button class="btn-copy" id="shareCopyBtn" onclick="copyShareGeneratedLink()" id="shareCopyBtnText">📋 Copy</button>
+      </div>
+    </div>
+    <div class="share-preview" onclick="goToSharePage()">
+      <div class="share-card-inner">
+        <div class="share-card-image"><img src="https://s3.bmp.ovh/2026/07/10/a4JehHe2.png" alt="Join PG Mall" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="share-card-info">
+          <div class="share-card-badge" id="shareBadge">🔥 Long-term</div>
+          <div class="share-card-title" id="shareCardTitle">Invite Friends · Claim <span class="highlight">50 ETB</span></div>
+          <div class="share-card-desc" id="shareDesc">Recommend 1 friend = <strong>50 ETB</strong> reward<br>Friend earns <strong>2,100 ETB</strong> after 2-day internship · Mutual benefit</div>
+          <div class="share-card-footer">
+            <span class="share-card-brand">🛒 www.pgmall1234.com</span>
+            <span class="share-card-cta" id="shareCta">Share now →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="share-buttons">
+      <button class="share-btn telegram" onclick="shareToTelegram()">✈️ Telegram</button>
+      <button class="share-btn whatsapp" onclick="shareToWhatsApp()">💬 WhatsApp</button>
+      <button class="share-btn facebook" onclick="shareToFacebook()">👍 Facebook</button>
+      <button class="share-btn twitter" onclick="shareToTwitter()">🐦 X</button>
+      <button class="share-btn copy" onclick="copyLink()" id="shareCopyLinkBtn">📋 Copy Link</button>
+    </div>
+    <div style="text-align:center; margin-top:10px; font-size:11px; color:#8e95b3;"><span id="shareHint">Click the card or buttons to share with friends and earn together!</span></div>
+  </div>
+
+  <!-- ===== 🏢 Business License ===== -->
+  <div class="card" style="background: rgba(255,255,255,0.5);">
+    <div class="section-title">
+      <span class="emoji">🏢</span>
+      <span id="licenseTitle">Business License · Official Verification</span>
+      <span class="line"></span>
+    </div>
+    <p style="font-size:14px; color:#4a4f6b; margin-bottom:12px; line-height:1.7;" id="licenseSub">
+      Here are the complete steps to verify PG Mall's business license. Please follow the sequence below:
+    </p>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="background:rgba(255,255,255,0.3); border-radius:16px; padding:14px 18px; border:1px solid rgba(255,255,255,0.3);">
+        <div style="font-weight:700; color:#1b1e2b; font-size:14px; margin-bottom:6px;" id="licenseStep1">📌 Step 1: Visit the official Colorado SOS website</div>
+        <p style="font-size:13px; color:#5a6080; margin-bottom:8px;" id="licenseStep1d">
+          👉 <a href="https://www.sos.state.co.us" target="_blank" rel="noopener noreferrer" style="color:#ed8936; font-weight:600; text-decoration:underline;">https://www.sos.state.co.us</a>
+          <br>This is the official website of the Colorado Secretary of State.
+        </p>
+        <img src="https://s3.bmp.ovh/2026/07/11/FfQojvdp.png" alt="Colorado SOS website" style="width:100%; border-radius:12px; border:1px solid rgba(0,0,0,0.06);" onerror="this.style.display='none'">
+      </div>
+      <div style="background:rgba(255,255,255,0.3); border-radius:16px; padding:14px 18px; border:1px solid rgba(255,255,255,0.3);">
+        <div style="font-weight:700; color:#1b1e2b; font-size:14px; margin-bottom:6px;" id="licenseStep2">📌 Step 2: Enter "Search Business Database"</div>
+        <p style="font-size:13px; color:#5a6080; margin-bottom:8px;" id="licenseStep2d">
+          Find and click <strong>"Search Business Database"</strong> on the homepage to access the company information query system.
+        </p>
+        <img src="https://s3.bmp.ovh/2026/07/11/ahSc5qn4.png" alt="Search Business Database" style="width:100%; border-radius:12px; border:1px solid rgba(0,0,0,0.06);" onerror="this.style.display='none'">
+      </div>
+      <div style="background:rgba(255,255,255,0.3); border-radius:16px; padding:14px 18px; border:1px solid rgba(255,255,255,0.3);">
+        <div style="font-weight:700; color:#1b1e2b; font-size:14px; margin-bottom:6px;" id="licenseStep3">📌 Step 3: Enter the company name or ID</div>
+        <p style="font-size:13px; color:#5a6080; margin-bottom:8px;" id="licenseStep3d">
+          Enter our company name or ID to view the registration information:<br>
+          <strong id="licenseCompanyName">Company Name:</strong> PG Playground<br>
+          <strong id="licenseCompanyId">Company ID:</strong> 20181650293
+        </p>
+        <img src="https://s3.bmp.ovh/2026/07/11/byKtZwym.png" alt="Enter company name or ID" style="width:100%; border-radius:12px; border:1px solid rgba(0,0,0,0.06);" onerror="this.style.display='none'">
+      </div>
+      <div style="background:rgba(255,255,255,0.3); border-radius:16px; padding:14px 18px; border:1px solid rgba(255,255,255,0.3); border-left: 4px solid #2b9b72;">
+        <div style="font-weight:700; color:#1b1e2b; font-size:14px; margin-bottom:6px;" id="licenseStep4">📌 Step 4: View our Company's Legal Proof</div>
+        <p style="font-size:13px; color:#5a6080; margin-bottom:8px;" id="licenseStep4d">
+          The image below is an official document confirming the legal status of PG Mall. This serves as our company's legal proof.
+        </p>
+        <img src="https://raw.githubusercontent.com/PGshop/Grace2/c394d2c9567118f8ec501eff1187e2e02b87107a/images/sos-business-menu3.jpg" alt="PG Mall Legal Proof Document" style="width:100%; border-radius:12px; border:1px solid rgba(0,0,0,0.06);" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <div class="footer-note">
+    <p id="footerText">© 2026 PG Mall · All rights reserved. · For internal use only.</p>
+  </div>
+</div>
+
+<!-- ===== Toast Container ===== -->
+<div id="toastContainer"></div>
+
+<script>
+// ========== Multi-language Text ==========
+const LANG = {
+  en: {
+    headerTitle: "Invite Friends · Claim Rewards",
+    headerSub: "Recommend 1 = 50 ETB · Friend can earn 2,100 ETB during internship · Mutual benefit",
+    guideTitle: "8-Step Operation Guide · Easy to Onboard New Members",
+    guideSub: "Follow this process to guide your friends and family through onboarding. Each step is clear and straightforward.",
+    step1Title: "Invite friends and family willing to work",
+    step1Desc: "Start with people you trust. Invite friends or family members who are motivated to earn a stable income through effort.",
+    step2Title: "Share your exclusive invite link",
+    step2Desc: "Copy your unique invite link from the generator below and send it to the friend you're inviting. This is their entry point.",
+    step2Link: "Click to copy my invite link",
+    step3Title: "Guide them to register a work account",
+    step3Desc: "Help your friend open the registration page via your link and fill in the required details to create their work account.",
+    step4Title: "Guide them to link their home address",
+    step4Desc: "Instruct your friend to add their correct home address in the account settings. This is essential for task validation.",
+    step5Title: "Guide them to complete 2-day internship tasks",
+    step5Desc: "Explain the daily intern tasks clearly and encourage them to complete them with quality for two consecutive days. This is key to earning rewards.",
+    step6Title: "Share Grace's Telegram",
+    step6Desc: "Ask your friend to add Grace on Telegram to receive official updates, support, and task guidance.",
+    step6Bonus: "🎁 Successfully adding Grace on Telegram allows them to claim the 50 ETB intern training bonus.",
+    step7Title: "7. Critical Step: Activate Premium Account",
+    step7Desc: "Inform your friend that after completing the internship, they need to make a one-time activation deposit to upgrade to a Premium account to continue working. The contract period is 1 year, and the deposit will be fully refunded after the 1-year contract ends.",
+    step7Tag1: "💰 One-time deposit",
+    step7Tag2: "📅 Contract: 1 year",
+    step7Tag3: "✅ Full refund upon completion",
+    step8Title: "8. Extra Bonus: Activating Premium Account",
+    step8Desc: "When the intern you invited activates a Premium account and becomes an official PG Mall employee, you will receive an additional referral bonus based on their activation level:",
+    bonusLevel1: "1. Activate Junior Partner",
+    bonusAmount1: "Referral gets 200 ETB",
+    bonusLevel2: "2. Activate VIP1",
+    bonusAmount2: "Referral gets 500 ETB",
+    bonusLevel3: "3. Activate VIP2",
+    bonusAmount3: "Referral gets 1,600 ETB",
+    calcExample: "💡 Earning Calculation Example",
+    calcExample1: "📌 Intern activates Junior Partner",
+    calcExample1a: "💰 Training Bonus: 50 ETB",
+    calcExample1b: "🎯 Referral Reward: 200 ETB",
+    calcExample1c: "📈 Permanent Dividend: 0.2%",
+    calcExample1Note: "(More referrals = more bonuses)",
+    calcExample1d: "📊 1 Junior Partner daily dividend: 3,600 × 0.2% = 7.2 ETB/day",
+    calcExample1e: "📊 10 Junior Partners daily dividend: 3,600 × 10 × 0.2% = 72 ETB/day",
+    calcExample2: "📌 Intern activates VIP 1 Premium Account",
+    calcExample2a: "💰 Training Bonus: 50 ETB",
+    calcExample2b: "🎯 Referral Reward: 500 ETB",
+    calcExample2c: "📈 Permanent Dividend: 0.2%",
+    calcExample2d: "🧾 Tax Subsidy: 10%",
+    calcExample2e: "📊 1 VIP1 daily dividend: 24,000 × 0.2% = 48 ETB/day",
+    calcExample2f: "📊 10 VIP1 daily dividend: 24,000 × 0.2% × 10 = 480 ETB/day",
+    calcExample3: "📌 Employee promotes from Junior to VIP2",
+    calcExample3a: "📊 1 VIP2 daily dividend: 24,000 × 0.2% = 48 ETB/day",
+    calcExample3b: "📊 10 VIP2 daily dividend: 24,000 × 0.2% × 10 = 480 ETB/day",
+    calcExampleNote: "⭐ The dividend increases as your employees' levels rise — higher levels mean higher permanent dividends!",
+    bonusNote: "📌 Actual bonus amounts are subject to the announcements made by administrators in the group.",
+    bonusImageCaption: "📷 Bonus Info · Reference",
+    scrollHintText: "👇 Scroll down to see full content",
+    scrollHintAction: "(click or scroll)",
+    inviteLabel: "How to Invite:",
+    inviteSteps: "① Log in to your work account\n② Click 👤 User or 👥 My Team\n③ Copy your personal invite code\n④ Enter the code on the right → Click \"Generate Link\" → Click \"Copy\" to share with friends",
+    motivationQ1: "Are you content with only a 60 ETB daily salary?",
+    motivationT1: "As a Junior Partner, your daily work earns only 60 ETB.",
+    motivationT2: "Can 60 ETB really provide the ideal life for you and your family in Ethiopia?",
+    motivationQ2: "Change starts with recruitment!",
+    motivationT3: "You now have a valuable opportunity — recruit your subordinates to create more income for you.",
+    motivationT4: "Only by continuously recruiting employees can your income continue to grow and break through the 60 ETB daily limit.",
+    motivationQ3: "Think about your family, your children, your partner.",
+    motivationT5: "They deserve better living conditions, better education, and a brighter future.",
+    motivationT6: "Share this opportunity with people in need,",
+    motivationT7: "provide them with a chance to change their lives, and at the same time, create a more valuable and significant income for yourself.",
+    motivationT8: "💰 Every employee you recruit is a step towards your financial freedom.",
+    motivationT9: "⭐ The bigger your team, the higher your income — from 60 ETB to 6,000 ETB, 60,000 ETB, all depends on your action.",
+    motivationT10: "The company only welcomes people who truly want to earn money.\nThose who are willing to invest time and complete tasks seriously will receive our full support.\nThose who just want to wait for money to fall from the sky are not needed here.\n\nIf you want to earn, I will help you.\nIf you don't want to act, no one can help you.",
+    motivationT11: "Earning money requires action.",
+    motivationCTA: "🔥 Start recruiting now · Change begins today",
+    inviteImageCaption: "📷 Example · Copy invite code from \"My Team\"",
+    generatorLabel: "🔗 Enter your 6-digit invite code to generate your exclusive link:",
+    generateBtnText: "Generate Link",
+    copyBtnText: "📋 Copy",
+    vipTitle: "VIP Staff · Tax Subsidies & Fixed Salary",
+    vipSub: "If they become a VIP staff member via your exclusive invite link, you can apply for a 10%~20% tax subsidy by sending the payout confirmation to the group:",
+    vipTableHead1: "Number of VIP Staff",
+    vipTableHead2: "Fixed Salary (1st of each month)",
+    vipTableHead3: "Tax Subsidy",
+    vipRow1a: "1 VIP Staff",
+    vipRow1b: "No fixed salary",
+    vipRow1c: "10%",
+    vipRow2a: "2 – 4 VIP Staff",
+    vipRow2b: "200 ETB",
+    vipRow2c: "10%",
+    vipRow3a: "5 – 9 VIP Staff",
+    vipRow3b: "3,700 ETB",
+    vipRow3c: "10%",
+    vipRow4a: "10 – 19 VIP Staff",
+    vipRow4b: "18,000 ETB",
+    vipRow4c: "15%",
+    vipRow5a: "20 – 29 VIP Staff",
+    vipRow5b: "44,000 ETB",
+    vipRow5c: "20%",
+    vipRow6a: "30 – 49 VIP Staff",
+    vipRow6b: "130,000 ETB",
+    vipRow6c: "20%",
+    vipRow7a: "50+ VIP Staff",
+    vipRow7b: "240,000 ETB",
+    vipRow7c: "20%",
+    vipFooter: "📌 How to apply for tax subsidy: Send the payout confirmation to the group after each withdrawal.\n📌 Fixed salary payment: Automatically disbursed on the 1st of each month.\n📌 Actual amounts are subject to announcements by group administrators.",
+    vipImageCaption: "📷 Team Salary · Reference",
+    closingMessage: "🙏 God and Mother Mary teach us:\n\"To those who have, more will be given; to those who have not, even what they have will be taken away.\"\nBut more importantly, we must love one another and share with each other.\n\nThe opportunity you hold is not just for yourself — it is for your family, your friends, and your fellow citizens who are struggling to make ends meet.\nLook at the lives of these Ethiopian brothers and sisters — they work hard every day just to put food on the table and send their children to school.\n\n📸 Their current reality:\n\nThey need change, and you can be the bridge.\nGod gives us resources not to keep for ourselves, but to share.\nMother Mary teaches us with her loving example — \"If you have the power to do good, do not withhold it.\"\n\n❤️ Share this work opportunity with those around you,\n❤️ Help them earn a stable income,\n❤️ Give every family hope for a better future.\n\nYour one share could change someone's life forever.\nLet us act together — for one another, for the future of Ethiopia! 🙏🇪🇹",
+    applyTitle: "How to Apply · Join the Discussion Group",
+    applyText: "After meeting the conditions, new users should submit their application in the activity discussion group using the required format (attach the new user's account and qualification screenshot).\n\nOur staff will verify the information and distribute the corresponding rewards.",
+    btnJoinGroup: "Join Activity Discussion Group",
+    btnJoinSub: "Jump to Telegram Group · PG Discussion 8810",
+    groupNote: "📌 The discussion group is only open to official staff. Please complete the onboarding process before joining.",
+    whyJoinTitle: "✅ Why join the employee discussion group?",
+    whyJoinSub: "Dear, joining the discussion group gives you four direct benefits:",
+    whyJoin1: "1️⃣ Get activity information first",
+    whyJoin1d: "The company regularly launches limited-time reward activities, upgrade subsidies, holiday benefits, etc. These are announced in the discussion group first. If you're not in the group, you might miss earning opportunities.",
+    whyJoin2: "2️⃣ Learn from others' success",
+    whyJoin2d: "Many experienced employees share their tips on completing tasks, inviting friends, and the withdrawal process. Learning from them helps you grow faster.",
+    whyJoin3: "3️⃣ Ask questions anytime",
+    whyJoin3d: "If you encounter issues — stuck pages, commission not credited — just ask in the group. Someone will help you, so you don't have to struggle alone.",
+    whyJoin4: "4️⃣ See real withdrawal records",
+    whyJoin4d: "Employees share payout screenshots daily. Seeing others actually receiving money is more convincing than anything I say.",
+    whyJoinSummary: "📌 \"Joining the group = Don't miss activities + Learn from experience + Get help + See real payouts.\"",
+    howJoinTitle: "🔗 How to join?",
+    howJoinDesc: "Click the \"Join Activity Discussion Group\" button above, or copy and open this link in Telegram:\nhttps://t.me/+Hstz9c3wnntiODVl\nAfter requesting to join, please check the group announcement for basic rules.",
+    tipsTitle: "Important Notes",
+    tip1: "Rewards will be distributed within 10 minutes after verification",
+    tip2: "Please ensure the information provided is true and accurate. False information will lead to disqualification",
+    tip3: "PG-MALL reserves the right of final interpretation of this activity",
+    faqTitle: "FAQ",
+    faq1q: "💰 Do I need to pay to join?",
+    faq1a: "Completely free, zero barrier to entry.",
+    faq2q: "⏱️ How long does the referral reward take?",
+    faq2a: "After your friend completes the internship, rewards are sent within 10 minutes after verification.",
+    faq3q: "👥 How many people can I invite?",
+    faq3a: "Unlimited — the more you invite, the more you earn.",
+    faq4q: "📌 How much can my friend earn?",
+    faq4a: "Your friend can earn 2,100 ETB by completing the 2-day internship.",
+    shareTitle: "Share with Friends · Earn Together",
+    shareGeneratorLabel: "🔗 Enter your 6-digit invite code to generate your exclusive link:",
+    shareGenerateBtnText: "Generate Link",
+    shareCopyBtnText: "📋 Copy",
+    shareBadge: "🔥 Long-term",
+    shareCardTitle: "Invite Friends · Claim 50 ETB",
+    shareDesc: "Recommend 1 friend = 50 ETB reward\nFriend earns 2,100 ETB after 2-day internship · Mutual benefit",
+    shareCta: "Share now →",
+    shareCopyLinkBtn: "📋 Copy Link",
+    shareHint: "Click the card or buttons to share with friends and earn together!",
+    licenseTitle: "Business License · Official Verification",
+    licenseSub: "Here are the complete steps to verify PG Mall's business license. Please follow the sequence below:",
+    licenseStep1: "📌 Step 1: Visit the official Colorado SOS website",
+    licenseStep1d: "👉 https://www.sos.state.co.us\nThis is the official website of the Colorado Secretary of State.",
+    licenseStep2: "📌 Step 2: Enter \"Search Business Database\"",
+    licenseStep2d: "Find and click \"Search Business Database\" on the homepage to access the company information query system.",
+    licenseStep3: "📌 Step 3: Enter the company name or ID",
+    licenseStep3d: "Enter our company name or ID to view the registration information:\nCompany Name: PG Playground\nCompany ID: 20181650293",
+    licenseCompanyName: "Company Name:",
+    licenseCompanyId: "Company ID:",
+    licenseStep4: "📌 Step 4: View our Company's Legal Proof",
+    licenseStep4d: "The image below is an official document confirming the legal status of PG Mall. This serves as our company's legal proof.",
+    footerText: "© 2026 PG Mall · All rights reserved. · For internal use only."
+  },
+  am: {
+    headerTitle: "ጓደኞችን ይጋብዙ · ሽልማቶችን ያግኙ",
+    headerSub: "1 ሰው ማስተዋወቅ = 50 ETB · ጓደኛዎ 2,100 ETB በተለማመጃ ጊዜ ሊያገኝ ይችላል · ሁለቱም ይጠቀማሉ",
+    guideTitle: "8-ደረጃ የአሰራር መመሪያ · አዳዲስ አባላትን በቀላሉ ያስገቡ",
+    guideSub: "ጓደኞችዎን እና ቤተሰቦትዎን ለማስገባት ይህንን ሂደት ይከተሉ። እያንዳንዱ እርምጃ ግልጽ እና ቀጥተኛ ነው።",
+    step1Title: "መስራት የሚፈልጉ ጓደኞችን እና ቤተሰቦችን ይጋብዙ",
+    step1Desc: "በሚታመኑ ሰዎች ይጀምሩ። በጥረት የተረጋጋ ገቢ ለማግኘት ተነሳሽነት ያላቸውን ጓደኞች ወይም ቤተሰቦች ይጋብዙ።",
+    step2Title: "የእርስዎን ልዩ የግብዣ አገናኝ ያጋሩ",
+    step2Desc: "ከታች ካለው ጄነሬተር ልዩ የግብዣ አገናኝዎን ቅዱት አድርገው ለሚጋብዙት ጓደኛ ይላኩ። ይህ የመግቢያ ነጥባቸው ነው።",
+    step2Link: "የእኔን ግብዣ አገናኝ ለመቅዳት ጠቅ ያድርጉ",
+    step3Title: "የስራ አካውንት እንዲመዘገቡ ይምሯቸው",
+    step3Desc: "ጓደኛዎ በአገናኝዎ በኩል የምዝገባ ገጹን እንዲከፍት እና የስራ አካውንታቸውን ለመፍጠር አስፈላጊ መረጃዎችን እንዲሞሉ ይርዱ።",
+    step4Title: "የቤት አድራሻቸውን እንዲያያይዙ ይምሯቸው",
+    step4Desc: "ጓደኛዎ በአካውንት ቅንብሮች ውስጥ ትክክለኛ የቤት አድራሻቸውን እንዲያክሉ ያስተምሯቸው። ይህ ለተግባር ማረጋገጫ አስፈላጊ ነው።",
+    step5Title: "የ2-ቀን የተለማመጃ ተግባራትን እንዲያጠናቅቁ ይምሯቸው",
+    step5Desc: "የዕለታዊ ተለማመጃ ተግባራትን በግልፅ ያስረዱ እና ለሁለት ተከታታይ ቀናት በጥራት እንዲያጠናቅቁ ያበረታቱ። ይህ ሽልማቶችን ለማግኘት ቁልፍ ነው።",
+    step6Title: "የGraceን ቴሌግራም ያጋሩ",
+    step6Desc: "ጓደኛዎ ኦፊሴላዊ ማሳወቂያዎችን፣ ድጋፍን እና የተግባር መመሪያን ለመቀበል Graceን በቴሌግራም እንዲያክሉ ይጠይቋቸው።",
+    step6Bonus: "🎁 Graceን በቴሌግራም በተሳካ ሁኔታ መጨመር 50 ETB የተለማመጃ ቦነስ እንዲያገኙ ያስችላቸዋል።",
+    step7Title: "7. ወሳኝ እርምጃ፥ የፕሪሚየም አካውንት ማግበር",
+    step7Desc: "ጓደኛዎን ያሳውቁ፤ ተለማመጃውን ከጨረሱ በኋላ መስራታቸውን ለመቀጠል ወደ ፕሪሚየም አካውንት ለመሸጋገር የአንድ ጊዜ የማግበር ተቀማጭ ማድረግ አለባቸው። የውሉ ጊዜ 1 ዓመት ነው፣ እና ተቀማጩ ከ1 ዓመት ውል ማብቂያ በኋላ ሙሉ በሙሉ ይመለሳል።",
+    step7Tag1: "💰 የአንድ ጊዜ ተቀማጭ",
+    step7Tag2: "📅 ውል፡ 1 ዓመት",
+    step7Tag3: "✅ ሲጠናቀቅ ሙሉ ተመላሽ",
+    step8Title: "8. ተጨማሪ ቦነስ፥ የፕሪሚየም አካውንት ማግበር",
+    step8Desc: "ያስተዋወቁት ተለማማጅ የፕሪሚየም አካውንት ሲያገበር እና የPG Mall ኦፊሴላዊ ሰራተኛ ሲሆን፣ እንደ ማግበር ደረጃቸው ተጨማሪ የማስተዋወቅ ቦነስ ያገኛሉ፡",
+    bonusLevel1: "1. ጁኒየር አጋር ማግበር",
+    bonusAmount1: "አስተዋዋቂ 200 ETB ያገኛል",
+    bonusLevel2: "2. VIP1 ማግበር",
+    bonusAmount2: "አስተዋዋቂ 500 ETB ያገኛል",
+    bonusLevel3: "3. VIP2 ማግበር",
+    bonusAmount3: "አስተዋዋቂ 1,600 ETB ያገኛል",
+    calcExample: "💡 የገቢ ስሌት ምሳሌ",
+    calcExample1: "📌 ተለማማጅ ጁኒየር አጋር ያገበራል",
+    calcExample1a: "💰 የሥልጠና ቦነስ፡ 50 ETB",
+    calcExample1b: "🎯 የማስተዋወቅ ሽልማት፡ 200 ETB",
+    calcExample1c: "📈 ቋሚ ክፍፍል፡ 0.2%",
+    calcExample1Note: "(ብዙ ማስተዋወቅ = ብዙ ቦነስ)",
+    calcExample1d: "📊 1 ጁኒየር አጋር ዕለታዊ ክፍፍል፡ 3,600 × 0.2% = 7.2 ETB/ቀን",
+    calcExample1e: "📊 10 ጁኒየር አጋሮች ዕለታዊ ክፍፍል፡ 3,600 × 10 × 0.2% = 72 ETB/ቀን",
+    calcExample2: "📌 ተለማማጅ VIP 1 ፕሪሚየም አካውንት ያገበራል",
+    calcExample2a: "💰 የሥልጠና ቦነስ፡ 50 ETB",
+    calcExample2b: "🎯 የማስተዋወቅ ሽልማት፡ 500 ETB",
+    calcExample2c: "📈 ቋሚ ክፍፍል፡ 0.2%",
+    calcExample2d: "🧾 የግብር ድጎማ፡ 10%",
+    calcExample2e: "📊 1 VIP1 ዕለታዊ ክፍፍል፡ 24,000 × 0.2% = 48 ETB/ቀን",
+    calcExample2f: "📊 10 VIP1 ዕለታዊ ክፍፍል፡ 24,000 × 0.2% × 10 = 480 ETB/ቀን",
+    calcExample3: "📌 ሰራተኛ ከጁኒየር ወደ VIP2 ያሳድጋል",
+    calcExample3a: "📊 1 VIP2 ዕለታዊ ክፍፍል፡ 24,000 × 0.2% = 48 ETB/ቀን",
+    calcExample3b: "📊 10 VIP2 ዕለታዊ ክፍፍል፡ 24,000 × 0.2% × 10 = 480 ETB/ቀን",
+    calcExampleNote: "⭐ የሰራተኞችዎ ደረጃ ሲጨምር ክፍፍሉ ይጨምራል — ከፍተኛ ደረጃ = ከፍተኛ ቋሚ ክፍፍል!",
+    bonusNote: "📌 ትክክለኛው የቦነስ መጠን በቡድኑ አስተዳዳሪዎች በሚለቀቀው ማስታወቂያ ይወሰናል።",
+    bonusImageCaption: "📷 የቦነስ መረጃ · ማጣቀሻ",
+    scrollHintText: "👇 ሙሉ ይዘቱን ለማየት ወደ ታች ያሸብልሉ",
+    scrollHintAction: "(ጠቅ ያድርጉ ወይም ያሸብልሉ)",
+    inviteLabel: "እንዴት መጋበዝ እንደሚቻል፡",
+    inviteSteps: "① ወደ ስራ አካውንትዎ ይግቡ\n② 👤 ተጠቃሚ ወይም 👥 ቡድኔን ጠቅ ያድርጉ\n③ የእርስዎን የግል የግብዣ ኮድ ይቅዱ\n④ በቀኝ በኩል ኮዱን ያስገቡ → \"አገናኝ ፍጠር\" ን ጠቅ ያድርጉ → ለጓደኛ ለማጋራት \"ቅዳ\" ን ጠቅ ያድርጉ",
+    motivationQ1: "በቀን 60 ETB ደሞዝ ብቻ ይረካሉ?",
+    motivationT1: "እንደ ጁኒየር አጋር፣ የዕለት ተዕለት ስራዎ 60 ETB ብቻ ያገኛል።",
+    motivationT2: "60 ETB በኢትዮጵያ ለእርስዎ እና ለቤተሰብዎ ተስማሚ ህይወት መስጠት ይችላል?",
+    motivationQ3: "ለቤተሰብዎ፣ ለልጆችዎ፣ ለትዳር አጋርዎ ያስቡ።",
+    motivationT3: "አሁን ጠቃሚ እድል አለዎት — ለእርስዎ ተጨማሪ ገቢ ለመፍጠር የበታች ሰራተኞችን ይቅጠሩ።",
+    motivationT4: "ሰራተኞችን በመቅጠር ብቻ ገቢዎ ሊያድግ እና የ60 ETB ዕለታዊ ገደብ ሊያልፍ ይችላል።",
+    motivationT5: "የተሻለ የኑሮ ሁኔታ፣ የተሻለ ትምህርት እና ብሩህ የወደፊት ህይወት ይገባቸዋል።",
+    motivationT6: "ይህንን እድል ከሚፈልጉ ሰዎች ጋር ያጋሩ፣",
+    motivationT7: "ህይወታቸውን ለመለወጥ እድል ይስጧቸው፣ እና በተመሳሳይ ጊዜ ለራስዎ የበለጠ ጠቃሚ ገቢ ይፍጠሩ።",
+    motivationT8: "💰 የሚቀጥሩት እያንዳንዱ ሰራተኛ ወደ ፋይናንሺያል ነጻነት የሚወስድ እርምጃ ነው።",
+    motivationT9: "⭐ ቡድንዎ በጨመረ ቁጥር ገቢዎ ይጨምራል — ከ60 ETB ወደ 6,000 ETB፣ 60,000 ETB፣ ሁሉም በእርምጃዎ ይወሰናል።",
+    motivationT10: "ኩባንያው ገንዘብ ማግኘት የሚፈልጉ ሰዎችን ብቻ ይቀበላል።\nጊዜ ለመስጠት እና ተግባራትን በቁም ነገር ለማጠናቀቅ የሚፈልጉትን ሙሉ ድጋፍ እናደርጋለን።\nገንዘብ ከሰማይ እንዲወርድ የሚጠብቁ እዚህ አያስፈልጉም።\n\nመስራት ከፈለጉ እረዳዎታለሁ።\nመንቀሳቀስ ካልፈለጉ ማንም ሊረዳዎ አይችልም።",
+    motivationT11: "ገንዘብ ማግኘት እርምጃ ይጠይቃል።",
+    motivationCTA: "🔥 አሁኑኑ መቅጠር ይጀምሩ · ለውጥ ዛሬ ይጀምራል",
+    inviteImageCaption: "📷 ምሳሌ · ከ\"ቡድኔ\" ውስጥ የግብዣ ኮድ ይቅዱ",
+    generatorLabel: "🔗 ልዩ የግብዣ አገናኝ ለመፍጠር የ6-አሃዝ የግብዣ ኮድዎን ያስገቡ፡",
+    generateBtnText: "አገናኝ ፍጠር",
+    copyBtnText: "📋 ቅዳ",
+    vipTitle: "ቪአይፒ ሰራተኞች · የግብር ድጎማ እና ቋሚ ደሞዝ",
+    vipSub: "በእርስዎ ልዩ የግብዣ አገናኝ በኩል ቪአይፒ ሰራተኛ ከሆኑ፣ የክፍያ ማረጋገጫውን ወደ ቡድኑ በመላክ ለ <strong>10%~20%</strong> የግብር ድጎማ ማመልከት ይችላሉ፡",
+    vipTableHead1: "የቪአይፒ ሰራተኞች ብዛት",
+    vipTableHead2: "ቋሚ ደሞዝ (በየወሩ 1ኛ ቀን)",
+    vipTableHead3: "የግብር ድጎማ",
+    vipRow1a: "1 ቪአይፒ ሰራተኛ",
+    vipRow1b: "ቋሚ ደሞዝ የለም",
+    vipRow1c: "10%",
+    vipRow2a: "2 – 4 ቪአይፒ ሰራተኞች",
+    vipRow2b: "200 ETB",
+    vipRow2c: "10%",
+    vipRow3a: "5 – 9 ቪአይፒ ሰራተኞች",
+    vipRow3b: "3,700 ETB",
+    vipRow3c: "10%",
+    vipRow4a: "10 – 19 ቪአይፒ ሰራተኞች",
+    vipRow4b: "18,000 ETB",
+    vipRow4c: "15%",
+    vipRow5a: "20 – 29 ቪአይፒ ሰራተኞች",
+    vipRow5b: "44,000 ETB",
+    vipRow5c: "20%",
+    vipRow6a: "30 – 49 ቪአይፒ ሰራተኞች",
+    vipRow6b: "130,000 ETB",
+    vipRow6c: "20%",
+    vipRow7a: "50+ ቪአይፒ ሰራተኞች",
+    vipRow7b: "240,000 ETB",
+    vipRow7c: "20%",
+    vipFooter: "📌 የግብር ድጎማ ማመልከቻ መንገድ፡ ከእያንዳንዱ መውጣት በኋላ የክፍያ ማረጋገጫውን ወደ ቡድኑ ይላኩ።\n📌 ቋሚ ደሞዝ ክፍያ፡ በየወሩ 1ኛ ቀን በራስ-ሰር ይከፈላል።\n📌 ትክክለኛው መጠን በቡድን አስተዳዳሪዎች ማስታወቂያ ይወሰናል።",
+    vipImageCaption: "📷 የቡድን ደሞዝ · ማጣቀሻ",
+    closingMessage: "🙏 እግዚአብሔር እና እመቤታችን ማርያም ያስተምሩናል፡\n\"ያለው ሁሉ ይሰጠዋል፤ የሌለው ያለውም ይወሰድበታል።\"\nግን ከሁሉ በላይ፣ እርስ በርስ መዋደድ እና መጋራት አለብን።\n\nይህ የስራ እድል ለራስዎ ብቻ አይደለም — ለቤተሰብዎ፣ ለጓደኞችዎ እና ለህይወት ትግል ለሚያደርጉ የአገር ወገኖችዎ ነው።\nእነዚህን የኢትዮጵያ ወንድሞች እና እህቶች ህይወት ተመልከቱ — በየቀኑ ጠረጴዛ ላይ ምግብ ለማድረግ እና ልጆቻቸውን ወደ ትምህርት ቤት ለመላክ ጠንክረው ይሰራሉ።\n\n📸 የአሁኑ እውነታቸው፡\n\nእነሱ ለውጥ ያስፈልጋቸዋል፣ እና እርስዎ ድልድይ ሊሆኑ ይችላሉ።\nእግዚአብሔር ሀብትን የሰጠን ለራሳችን ብቻ ሳይሆን ለማጋራት ነው።\nእመቤታችን ማርያም በፍቅር ምሳሌዋ ታስተምረናለች — \"በጎ ነገር ለማድረግ ኃይል ካለህ አታቅማሚ።\"\n\n❤️ ይህንን የስራ እድል በዙሪያህ ላሉት አጋራ፣\n❤️ የተረጋጋ ገቢ እንዲያገኙ እርዳቸው፣\n❤️ ለእያንዳንዱ ቤተሰብ የተሻለ የወደፊት ተስፋ ስጥ።\n\nየአንተ አንድ ማጋራት የአንድን ሰው ህይወት ለዘላለም ሊቀይር ይችላል።\nአንድ ላይ እንንቀሳቀስ — እርስ በርስ፣ ለኢትዮጵያ የወደፊት ህይወት! 🙏🇪🇹",
+    applyTitle: "እንዴት ማመልከት እንደሚቻል · የውይይት ቡድኑን ይቀላቀሉ",
+    applyText: "ሁኔታዎችን ካሟሉ በኋላ፣ አዳዲስ ተጠቃሚዎች በእንቅስቃሴ ውይይት ቡድን ውስጥ በሚፈለገው ቅርጸት ማመልከት አለባቸው (አዲሱን ተጠቃሚ አካውንት እና የብቃት ቅጥያ ያያይዙ)።\n\nሰራተኞቻችን መረጃውን ያረጋግጣሉ እና ተጓዳኝ ሽልማቶችን ያሰራጫሉ።",
+    btnJoinGroup: "የእንቅስቃሴ ውይይት ቡድን ይቀላቀሉ",
+    btnJoinSub: "ወደ ቴሌግራም ቡድን ይሂዱ · PG ውይይት 8810",
+    groupNote: "📌 የውይይት ቡድኑ ለኦፊሴላዊ ሰራተኞች ብቻ ክፍት ነው። እባክዎ ከመቀላቀልዎ በፊት የመግቢያ ሂደቱን ያጠናቅቁ።",
+    whyJoinTitle: "✅ ለምን የሰራተኛ ውይይት ቡድኑን መቀላቀል አለብዎት?",
+    whyJoinSub: "ውድ ተጠቃሚ፣ የውይይት ቡድኑን መቀላቀል <strong>አራት ቀጥተኛ ጥቅሞችን</strong> ይሰጥዎታል፡",
+    whyJoin1: "1️⃣ የእንቅስቃሴ መረጃ በመጀመሪያ ያግኙ",
+    whyJoin1d: "ኩባንያው በየጊዜው ልዩ የሽልማት እንቅስቃሴዎችን፣ የማሻሻያ ድጎማዎችን፣ የበዓል ጥቅሞችን ወዘተ ያወጣል። እነዚህ መጀመሪያ በውይይት ቡድን ውስጥ ይታወቃሉ። በቡድኑ ውስጥ ካልሆኑ፣ የገቢ እድሎችን ሊያመልጥዎ ይችላል።",
+    whyJoin2: "2️⃣ ከሌሎች ስኬት ይማሩ",
+    whyJoin2d: "ብዙ ልምድ ያላቸው ሰራተኞች ተግባራትን ለማጠናቀቅ፣ ጓደኞችን ለመጋበዝ እና የመውጣት ሂደት ላይ ምክሮቻቸውን ያጋራሉ። ከእነሱ መማር በፍጥነት እንዲያድጉ ይረዳዎታል።",
+    whyJoin3: "3️⃣ በማንኛውም ጊዜ ጥያቄዎችን ይጠይቁ",
+    whyJoin3d: "ችግሮች ካጋጠሙ — ገፆች ከተቆሙ፣ ኮሚሽን ካልተሰጠ — በቡድኑ ውስጥ ብቻ ይጠይቁ። አንድ ሰው ይረዳዎታል፣ ስለዚህ ብቻዎን መታገል አያስፈልግዎትም።",
+    whyJoin4: "4️⃣ እውነተኛ የመውጣት መዝገቦችን ይመልከቱ",
+    whyJoin4d: "ሰራተኞች በየቀኑ የክፍያ ቅጥያዎችን ያጋራሉ። ሌሎች ገንዘብ ሲቀበሉ ማየት ከምነግርዎት ማንኛውም ነገር የበለጠ አሳማኝ ነው።",
+    whyJoinSummary: "📌 \"ቡድኑን መቀላቀል = እንቅስቃሴዎችን አያምልጥዎ + ከልምድ ይማሩ + እርዳታ ያግኙ + እውነተኛ ክፍያዎችን ይመልከቱ።\"",
+    howJoinTitle: "🔗 እንዴት መቀላቀል ይቻላል?",
+    howJoinDesc: "ከላይ ያለውን \"የእንቅስቃሴ ውይይት ቡድን ይቀላቀሉ\" ቁልፍ ጠቅ ያድርጉ፣ ወይም ይህንን አገናኝ ቅዱት አድርገው በቴሌግራም ይክፈቱ፡\nhttps://t.me/+Hstz9c3wnntiODVl\nመቀላቀል ከጠየቁ በኋላ፣ እባክዎ መሰረታዊ ህጎችን ለማወቅ የቡድን ማስታወቂያውን ያረጋግጡ።",
+    tipsTitle: "ጠቃሚ ማስታወሻዎች",
+    tip1: "ሽልማቶች ከተረጋገጡ በኋላ በ <strong>10 ደቂቃዎች</strong> ውስጥ ይሰራጫሉ",
+    tip2: "እባክዎ የሚሰጠው መረጃ <strong>እውነት እና ትክክለኛ</strong> መሆኑን ያረጋግጡ። የውሸት መረጃ ወደ <span class=\"highlight\">ብቃት መሻር</span> ያመራል",
+    tip3: "<strong>PG-MALL</strong> የዚህ እንቅስቃሴ የመጨረሻ ትርጉም መብቱን ይይዛል",
+    faqTitle: "ተዘውትረው የሚጠየቁ ጥያቄዎች",
+    faq1q: "💰 ለመቀላቀል መክፈል አለብኝ?",
+    faq1a: "ሙሉ በሙሉ ነጻ፣ ምንም የመግቢያ እንቅፋት የለም።",
+    faq2q: "⏱️ የማስተዋወቅ ሽልማት ምን ያህል ጊዜ ይወስዳል?",
+    faq2a: "ጓደኛዎ ተለማመጃውን ከጨረሱ በኋላ፣ ሽልማቶች ከተረጋገጡ በኋላ በ <strong>10 ደቂቃዎች</strong> ውስጥ ይላካሉ።",
+    faq3q: "👥 ስንት ሰዎችን መጋበዝ እችላለሁ?",
+    faq3a: "<strong>ያልተገደበ</strong> — ብዙ በጋበዙ ቁጥር ብዙ ያገኛሉ።",
+    faq4q: "📌 ጓደኛዬ ምን ያህል ሊያገኝ ይችላል?",
+    faq4a: "ጓደኛዎ የ2-ቀን ተለማመጃን በማጠናቀቅ <strong>2,100 ETB</strong> ሊያገኝ ይችላል።",
+    shareTitle: "ከጓደኞች ጋር ያጋሩ · አብረው ያግኙ",
+    shareGeneratorLabel: "🔗 ልዩ የግብዣ አገናኝ ለመፍጠር የ6-አሃዝ የግብዣ ኮድዎን ያስገቡ፡",
+    shareGenerateBtnText: "አገናኝ ፍጠር",
+    shareCopyBtnText: "📋 ቅዳ",
+    shareBadge: "🔥 የረጅም ጊዜ",
+    shareCardTitle: "ጓደኞችን ይጋብዙ · 50 ETB ይጠይቁ",
+    shareDesc: "1 ጓደኛ ማስተዋወቅ = 50 ETB ሽልማት\nጓደኛዎ ከ2-ቀን ተለማመጃ በኋላ 2,100 ETB ያገኛል · ሁለቱም ይጠቀማሉ",
+    shareCta: "አሁን ያጋሩ →",
+    shareCopyLinkBtn: "📋 አገናኝ ቅዳ",
+    shareHint: "ከጓደኞች ጋር ለማጋራት እና አብረው ለማግኘት ካርዱን ወይም ቁልፎቹን ጠቅ ያድርጉ!",
+    licenseTitle: "የንግድ ፍቃድ · ኦፊሴላዊ ማረጋገጫ",
+    licenseSub: "የPG Mall የንግድ ፍቃድ ለማረጋገጥ የተሟሉ እርምጃዎች እነኚሁና። እባክዎ ከታች ያለውን ቅደም ተከተል ይከተሉ፡",
+    licenseStep1: "📌 እርምጃ 1፡ የኮሎራዶ SOS ኦፊሴላዊ ድርጣቢያ ይጎብኙ",
+    licenseStep1d: "👉 https://www.sos.state.co.us\nይህ የኮሎራዶ የስቴት ፀሐፊ ኦፊሴላዊ ድርጣቢያ ነው።",
+    licenseStep2: "📌 እርምጃ 2፡ \"Search Business Database\" ያስገቡ",
+    licenseStep2d: "የኩባንያ መረጃ መጠይቅ ስርዓቱን ለመድረስ በመነሻ ገጹ ላይ \"Search Business Database\" ን ያግኙ እና ጠቅ ያድርጉ።",
+    licenseStep3: "📌 እርምጃ 3፡ የኩባንያውን ስም ወይም መታወቂያ ያስገቡ",
+    licenseStep3d: "የምዝገባ መረጃውን ለማየት የኩባንያችንን ስም ወይም መታወቂያ ያስገቡ፡\nየኩባንያ ስም፡ PG Playground\nየኩባንያ መታወቂያ፡ 20181650293",
+    licenseCompanyName: "የኩባንያ ስም፡",
+    licenseCompanyId: "የኩባንያ መታወቂያ፡",
+    licenseStep4: "📌 እርምጃ 4፡ የኩባንያችንን ህጋዊ ማረጋገጫ ይመልከቱ",
+    licenseStep4d: "ከታች ያለው ምስል የPG Mallን ህጋዊ ሁኔታ የሚያረጋግጥ ኦፊሴላዊ ሰነድ ነው። ይህ የኩባንያችን ህጋዊ ማረጋገጫ ሆኖ ያገለግላል።",
+    footerText: "© 2026 PG Mall · ሁሉም መብቶች የተጠበቁ። · ለውስጣዊ አገልግሎት ብቻ።"
+  }
+};
+
+let currentLang = 'en';
+
+function switchLanguage(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  const texts = LANG[lang];
+  if (!texts) return;
+
+  document.getElementById('headerTitle').textContent = texts.headerTitle;
+  document.getElementById('headerSub').textContent = texts.headerSub;
+  document.getElementById('guideTitle').textContent = texts.guideTitle;
+  document.getElementById('guideSub').textContent = texts.guideSub;
+  document.getElementById('step1Title').textContent = texts.step1Title;
+  document.getElementById('step1Desc').textContent = texts.step1Desc;
+  document.getElementById('step2Title').textContent = texts.step2Title;
+  document.getElementById('step2Desc').textContent = texts.step2Desc;
+  document.getElementById('step2Link').textContent = texts.step2Link;
+  document.getElementById('step3Title').textContent = texts.step3Title;
+  document.getElementById('step3Desc').textContent = texts.step3Desc;
+  document.getElementById('step4Title').textContent = texts.step4Title;
+  document.getElementById('step4Desc').textContent = texts.step4Desc;
+  document.getElementById('step5Title').textContent = texts.step5Title;
+  document.getElementById('step5Desc').textContent = texts.step5Desc;
+  document.getElementById('step6Title').textContent = texts.step6Title;
+  document.getElementById('step6Desc').textContent = texts.step6Desc;
+  document.getElementById('step6Bonus').textContent = texts.step6Bonus;
+  document.getElementById('step7Title').textContent = texts.step7Title;
+  document.getElementById('step7Desc').textContent = texts.step7Desc;
+  document.getElementById('step7Tag1').textContent = texts.step7Tag1;
+  document.getElementById('step7Tag2').textContent = texts.step7Tag2;
+  document.getElementById('step7Tag3').textContent = texts.step7Tag3;
+  document.getElementById('step8Title').textContent = texts.step8Title;
+  document.getElementById('step8Desc').textContent = texts.step8Desc;
+  document.getElementById('bonusLevel1').textContent = texts.bonusLevel1;
+  document.getElementById('bonusAmount1').textContent = texts.bonusAmount1;
+  document.getElementById('bonusLevel2').textContent = texts.bonusLevel2;
+  document.getElementById('bonusAmount2').textContent = texts.bonusAmount2;
+  document.getElementById('bonusLevel3').textContent = texts.bonusLevel3;
+  document.getElementById('bonusAmount3').textContent = texts.bonusAmount3;
+  document.getElementById('calcExample').textContent = texts.calcExample;
+  document.getElementById('calcExample1').textContent = texts.calcExample1;
+  document.getElementById('calcExample1a').textContent = texts.calcExample1a;
+  document.getElementById('calcExample1b').textContent = texts.calcExample1b;
+  document.getElementById('calcExample1c').textContent = texts.calcExample1c;
+  document.getElementById('calcExample1Note').textContent = texts.calcExample1Note;
+  document.getElementById('calcExample1d').textContent = texts.calcExample1d;
+  document.getElementById('calcExample1e').textContent = texts.calcExample1e;
+  document.getElementById('calcExample2').textContent = texts.calcExample2;
+  document.getElementById('calcExample2a').textContent = texts.calcExample2a;
+  document.getElementById('calcExample2b').textContent = texts.calcExample2b;
+  document.getElementById('calcExample2c').textContent = texts.calcExample2c;
+  document.getElementById('calcExample2d').textContent = texts.calcExample2d;
+  document.getElementById('calcExample2e').textContent = texts.calcExample2e;
+  document.getElementById('calcExample2f').textContent = texts.calcExample2f;
+  document.getElementById('calcExample3').textContent = texts.calcExample3;
+  document.getElementById('calcExample3a').textContent = texts.calcExample3a;
+  document.getElementById('calcExample3b').textContent = texts.calcExample3b;
+  document.getElementById('calcExampleNote').textContent = texts.calcExampleNote;
+  document.getElementById('bonusNote').textContent = texts.bonusNote;
+  document.getElementById('bonusImageCaption').textContent = texts.bonusImageCaption;
+  document.getElementById('scrollHintText').textContent = texts.scrollHintText;
+  document.getElementById('scrollHintAction').textContent = texts.scrollHintAction;
+  document.getElementById('inviteLabel').textContent = texts.inviteLabel;
+  document.getElementById('inviteSteps').textContent = texts.inviteSteps;
+  document.getElementById('motivationQ1').textContent = texts.motivationQ1;
+  document.getElementById('motivationT1').textContent = texts.motivationT1;
+  document.getElementById('motivationT2').textContent = texts.motivationT2;
+  document.getElementById('motivationQ2').textContent = texts.motivationQ2;
+  document.getElementById('motivationT3').textContent = texts.motivationT3;
+  document.getElementById('motivationT4').textContent = texts.motivationT4;
+  document.getElementById('motivationQ3').textContent = texts.motivationQ3;
+  document.getElementById('motivationT5').textContent = texts.motivationT5;
+  document.getElementById('motivationT6').textContent = texts.motivationT6;
+  document.getElementById('motivationT7').textContent = texts.motivationT7;
+  document.getElementById('motivationT8').textContent = texts.motivationT8;
+  document.getElementById('motivationT9').textContent = texts.motivationT9;
+  document.getElementById('motivationT10').textContent = texts.motivationT10;
+  document.getElementById('motivationT11').textContent = texts.motivationT11;
+  document.getElementById('motivationCTA').textContent = texts.motivationCTA;
+  document.getElementById('inviteImageCaption').textContent = texts.inviteImageCaption;
+  document.getElementById('generatorLabel').textContent = texts.generatorLabel;
+  document.getElementById('generateBtnText').textContent = texts.generateBtnText;
+  document.getElementById('copyBtnText').textContent = texts.copyBtnText;
+  document.getElementById('vipTitle').textContent = texts.vipTitle;
+  document.getElementById('vipSub').textContent = texts.vipSub;
+  document.getElementById('vipTableHead1').textContent = texts.vipTableHead1;
+  document.getElementById('vipTableHead2').textContent = texts.vipTableHead2;
+  document.getElementById('vipTableHead3').textContent = texts.vipTableHead3;
+  document.getElementById('vipRow1a').textContent = texts.vipRow1a;
+  document.getElementById('vipRow1b').textContent = texts.vipRow1b;
+  document.getElementById('vipRow1c').textContent = texts.vipRow1c;
+  document.getElementById('vipRow2a').textContent = texts.vipRow2a;
+  document.getElementById('vipRow2b').textContent = texts.vipRow2b;
+  document.getElementById('vipRow2c').textContent = texts.vipRow2c;
+  document.getElementById('vipRow3a').textContent = texts.vipRow3a;
+  document.getElementById('vipRow3b').textContent = texts.vipRow3b;
+  document.getElementById('vipRow3c').textContent = texts.vipRow3c;
+  document.getElementById('vipRow4a').textContent = texts.vipRow4a;
+  document.getElementById('vipRow4b').textContent = texts.vipRow4b;
+  document.getElementById('vipRow4c').textContent = texts.vipRow4c;
+  document.getElementById('vipRow5a').textContent = texts.vipRow5a;
+  document.getElementById('vipRow5b').textContent = texts.vipRow5b;
+  document.getElementById('vipRow5c').textContent = texts.vipRow5c;
+  document.getElementById('vipRow6a').textContent = texts.vipRow6a;
+  document.getElementById('vipRow6b').textContent = texts.vipRow6b;
+  document.getElementById('vipRow6c').textContent = texts.vipRow6c;
+  document.getElementById('vipRow7a').textContent = texts.vipRow7a;
+  document.getElementById('vipRow7b').textContent = texts.vipRow7b;
+  document.getElementById('vipRow7c').textContent = texts.vipRow7c;
+  document.getElementById('vipFooter').textContent = texts.vipFooter;
+  document.getElementById('vipImageCaption').textContent = texts.vipImageCaption;
+  // CRITICAL FIX: Update closing message
+  document.getElementById('closingMessage').textContent = texts.closingMessage;
+  document.getElementById('applyTitle').textContent = texts.applyTitle;
+  document.getElementById('applyText').textContent = texts.applyText;
+  document.getElementById('btnJoinGroup').textContent = texts.btnJoinGroup;
+  document.getElementById('btnJoinSub').textContent = texts.btnJoinSub;
+  document.getElementById('groupNote').textContent = texts.groupNote;
+  document.getElementById('whyJoinTitle').textContent = texts.whyJoinTitle;
+  document.getElementById('whyJoinSub').textContent = texts.whyJoinSub;
+  document.getElementById('whyJoin1').textContent = texts.whyJoin1;
+  document.getElementById('whyJoin1d').textContent = texts.whyJoin1d;
+  document.getElementById('whyJoin2').textContent = texts.whyJoin2;
+  document.getElementById('whyJoin2d').textContent = texts.whyJoin2d;
+  document.getElementById('whyJoin3').textContent = texts.whyJoin3;
+  document.getElementById('whyJoin3d').textContent = texts.whyJoin3d;
+  document.getElementById('whyJoin4').textContent = texts.whyJoin4;
+  document.getElementById('whyJoin4d').textContent = texts.whyJoin4d;
+  document.getElementById('whyJoinSummary').textContent = texts.whyJoinSummary;
+  document.getElementById('howJoinTitle').textContent = texts.howJoinTitle;
+  document.getElementById('howJoinDesc').textContent = texts.howJoinDesc;
+  document.getElementById('howJoinNote').textContent = texts.howJoinNote;
+  document.getElementById('tipsTitle').textContent = texts.tipsTitle;
+  document.getElementById('tip1').textContent = texts.tip1;
+  document.getElementById('tip2').textContent = texts.tip2;
+  document.getElementById('tip3').textContent = texts.tip3;
+  document.getElementById('faqTitle').textContent = texts.faqTitle;
+  document.getElementById('faq1q').textContent = texts.faq1q;
+  document.getElementById('faq1a').textContent = texts.faq1a;
+  document.getElementById('faq2q').textContent = texts.faq2q;
+  document.getElementById('faq2a').textContent = texts.faq2a;
+  document.getElementById('faq3q').textContent = texts.faq3q;
+  document.getElementById('faq3a').textContent = texts.faq3a;
+  document.getElementById('faq4q').textContent = texts.faq4q;
+  document.getElementById('faq4a').textContent = texts.faq4a;
+  document.getElementById('shareTitle').textContent = texts.shareTitle;
+  document.getElementById('shareGeneratorLabel').textContent = texts.shareGeneratorLabel;
+  document.getElementById('shareGenerateBtnText').textContent = texts.shareGenerateBtnText;
+  document.getElementById('shareCopyBtnText').textContent = texts.shareCopyBtnText;
+  document.getElementById('shareBadge').textContent = texts.shareBadge;
+  document.getElementById('shareCardTitle').textContent = texts.shareCardTitle;
+  document.getElementById('shareDesc').textContent = texts.shareDesc;
+  document.getElementById('shareCta').textContent = texts.shareCta;
+  document.getElementById('shareCopyLinkBtn').textContent = texts.shareCopyLinkBtn;
+  document.getElementById('shareHint').textContent = texts.shareHint;
+  document.getElementById('licenseTitle').textContent = texts.licenseTitle;
+  document.getElementById('licenseSub').textContent = texts.licenseSub;
+  document.getElementById('licenseStep1').textContent = texts.licenseStep1;
+  document.getElementById('licenseStep1d').textContent = texts.licenseStep1d;
+  document.getElementById('licenseStep2').textContent = texts.licenseStep2;
+  document.getElementById('licenseStep2d').textContent = texts.licenseStep2d;
+  document.getElementById('licenseStep3').textContent = texts.licenseStep3;
+  document.getElementById('licenseStep3d').textContent = texts.licenseStep3d;
+  document.getElementById('licenseCompanyName').textContent = texts.licenseCompanyName;
+  document.getElementById('licenseCompanyId').textContent = texts.licenseCompanyId;
+  document.getElementById('licenseStep4').textContent = texts.licenseStep4;
+  document.getElementById('licenseStep4d').textContent = texts.licenseStep4d;
+  document.getElementById('footerText').textContent = texts.footerText;
+}
+
+// ========== Scroll Hint ==========
+function scrollDown() {
+  window.scrollBy({ top: 400, behavior: 'smooth' });
+}
+
+// ========== Toast Notification ==========
+function showToast(message) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3500);
+}
+
+// ========== Invite Link Generator ==========
+function generateInviteLink() {
+  const input = document.getElementById('inviteCodeInput');
+  const code = input.value.trim();
+  if (!/^\d{6}$/.test(code)) {
+    showToast('Please enter a valid 6-digit invite code (e.g., 337375).');
+    return;
+  }
+  const linkText = document.getElementById('generatedLinkText');
+  linkText.innerHTML = `https://www.pgmall1234.com/register?invite_code=<span class="code-highlight">${code}</span>`;
+  document.getElementById('generatedLink').style.display = 'flex';
+}
+
+function copyGeneratedLink() {
+  const linkText = document.getElementById('generatedLinkText').textContent;
+  navigator.clipboard.writeText(linkText).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = currentLang === 'en' ? '📋 Copy' : '📋 ቅዳ';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    showToast('Copy failed. Please copy manually.');
+  });
+}
+
+function generateShareInviteLink() {
+  const input = document.getElementById('shareInviteCodeInput');
+  const code = input.value.trim();
+  if (!/^\d{6}$/.test(code)) {
+    showToast('Please enter a valid 6-digit invite code (e.g., 337375).');
+    return;
+  }
+  const linkText = document.getElementById('shareGeneratedLinkText');
+  linkText.innerHTML = `https://www.pgmall1234.com/register?invite_code=<span class="code-highlight">${code}</span>`;
+  document.getElementById('shareGeneratedLink').style.display = 'flex';
+}
+
+function copyShareGeneratedLink() {
+  const linkText = document.getElementById('shareGeneratedLinkText').textContent;
+  navigator.clipboard.writeText(linkText).then(() => {
+    const btn = document.getElementById('shareCopyBtn');
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = currentLang === 'en' ? '📋 Copy' : '📋 ቅዳ';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    showToast('Copy failed. Please copy manually.');
+  });
+}
+
+// ========== Share Functions ==========
+function getShareText() {
+  return currentLang === 'en' 
+    ? 'Join PG Mall and earn daily income! Use my invite link to get 50 ETB bonus:'
+    : 'PG Mall ን ይቀላቀሉ እና ዕለታዊ ገቢ ያግኙ! የእኔን የግብዣ አገናኝ ተጠቀሙ እና 50 ETB ቦነስ ያግኙ:';
+}
+
+function getShareUrl() {
+  const input = document.getElementById('inviteCodeInput');
+  const code = input.value.trim() || 'YOUR_CODE';
+  return `https://www.pgmall1234.com/register?invite_code=${code}`;
+}
+
+function shareToTelegram() {
+  const url = getShareUrl();
+  const text = getShareText();
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function shareToWhatsApp() {
+  const url = getShareUrl();
+  const text = getShareText();
+  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+}
+
+function shareToFacebook() {
+  const url = getShareUrl();
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(getShareText())}`, '_blank');
+}
+
+function shareToTwitter() {
+  const url = getShareUrl();
+  const text = getShareText();
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+}
+
+function copyLink() {
+  const url = getShareUrl();
+  navigator.clipboard.writeText(url).then(() => {
+    showToast(currentLang === 'en' ? 'Link copied to clipboard!' : 'አገናኝ ተቅዷል!');
+  }).catch(() => {
+    showToast(currentLang === 'en' ? 'Copy failed. Please copy manually.' : 'መቅዳት አልተሳካም። እባክዎ በእጅ ይቅዱ።');
+  });
+}
+
+function goToSharePage() {
+  copyLink();
+}
+
+// ========== Company Intro: Show video after 3 seconds ==========
+document.addEventListener('DOMContentLoaded', function() {
+  const videoWrapper = document.getElementById('videoWrapper');
+  setTimeout(function() {
+    videoWrapper.classList.add('show');
+  }, 3000);
+  // Default to English
+  switchLanguage('en');
+});
+</script>
+</body>
+</html>
